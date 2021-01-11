@@ -4,28 +4,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.rickandmorty.R
+import com.henryjhavierdev.rickandmorty.adapters.CharacterAdapter
+import com.henryjhavierdev.rickandmorty.data.MediaProvider
+import com.henryjhavierdev.rickandmorty.model.Character
+import com.henryjhavierdev.rickandmorty.model.Result
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+
         homeViewModel =
                 ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+
+        var recyclerView: RecyclerView = root.findViewById(R.id.rv_home_character)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+       //Obtiene lista de personales de la propertie result que esta dentro de character
+       //Media provider es un object y loadCharacter devuelve datos cableados
+        recyclerView.adapter = CharacterAdapter(MediaProvider.loadCharacter().results)
+
         return root
     }
+
+
 }

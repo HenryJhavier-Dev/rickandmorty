@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+
 }
 
 android {
@@ -49,6 +51,10 @@ dependencies {
     //Navigation fragment
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
-    //Navigation fragment
+    //Recycler view
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
 
 }
