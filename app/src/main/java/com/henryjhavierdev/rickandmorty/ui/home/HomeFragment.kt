@@ -21,14 +21,15 @@ class HomeFragment : Fragment() {
 
         homeViewModel =
                 ViewModelProvider(this).get(HomeViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
-        var recyclerView: RecyclerView = root.findViewById(R.id.rv_home_character)
+        val recyclerView: RecyclerView = root.findViewById(R.id.rv_home_character)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
        //Obtiene lista de personales de la propertie result que esta dentro de character
        //Media provider es un object y loadCharacter devuelve datos cableados
-        recyclerView.adapter = CharacterAdapter(MediaProvider.loadCharacter().results)
+        recyclerView.adapter = CharacterAdapter(MediaProvider.loadCharacter().results, 0)
 
         return root
     }
