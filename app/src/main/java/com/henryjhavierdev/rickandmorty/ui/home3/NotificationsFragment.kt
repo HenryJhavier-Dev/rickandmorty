@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.databinding.FragmentNotificationsBinding
@@ -27,6 +28,16 @@ class NotificationsFragment : Fragment() {
         notificationsViewModel =
             ViewModelProvider(this).get(NotificationsViewModel::class.java)
 
+
+        // Assign the component to a property in the binding class.
+        binding.viewModelNotification = notificationsViewModel
+        // This is used so that the binding can observe LiveData updates
+        //Sin esto no hace el enlace de las vistas con el view model (no hace el getRecyclerAdapter)
+        binding.lifecycleOwner = this
+
+        notificationsViewModel.characters.observe(viewLifecycleOwner, Observer {
+            notificationsViewModel.setRecyclerAdapter(it)
+        })
 
         return binding.root
     }

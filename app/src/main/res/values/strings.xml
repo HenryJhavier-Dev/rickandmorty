@@ -11,4 +11,14 @@
     <string name="species">Species</string>
     <string name="gender">Gender</string>
     <string name="loading">Loading...</string>
+
+    <!-- El %sy %dson son Marcadores de posicion
+    android:text="@{@string/quote_format(gameViewModel.word)}"
+    -->
+
+    <string name="quote_format">\"%s\"</string>
+    <string name="name_format">Name: %s</string>
+    <string name="status_format">Status: %s</string>
+    <string name="species_format">Species: %s</string>
+    <string name="gender_format">Gender: %s</string>
 </resources>
