@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.CharacterAdapter
 import com.henryjhavierdev.rickandmorty.data.MediaProvider
-import com.henryjhavierdev.rickandmorty.model.Character
-import com.henryjhavierdev.rickandmorty.model.Result
 
 class HomeFragment : Fragment() {
 
