@@ -1,16 +1,16 @@
-package com.henryjhavierdev.rickandmorty.ui.dashboard
+package com.henryjhavierdev.rickandmorty.ui.home2
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.henryjhavierdev.rickandmorty.adapters.CharacterAdapter
 import com.henryjhavierdev.rickandmorty.data.MediaProvider
 import com.henryjhavierdev.rickandmorty.databinding.FragmentDashboardBinding
+import com.henryjhavierdev.rickandmorty.viewmodel.DashboardViewModel
 
 class DashboardFragment : Fragment() {
 

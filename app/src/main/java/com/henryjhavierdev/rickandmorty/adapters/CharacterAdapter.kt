@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.henryjhavierdev.rickandmorty.R
+import com.henryjhavierdev.rickandmorty.helpers.generalToast
+import com.henryjhavierdev.rickandmorty.helpers.loadImageViewFromUrl
 import com.henryjhavierdev.rickandmorty.model.Result
 
 class CharacterAdapter(val item:List<Result> = emptyList(), val typeTemplateItem:Int = 0 ) :RecyclerView.Adapter<CharacterAdapter.ViewHolderCharacter>(){
@@ -42,10 +44,15 @@ class CharacterAdapter(val item:List<Result> = emptyList(), val typeTemplateItem
             species.text = "Species: ${character.species}"
             status.text = "Status: ${character.status}"
 
-            Glide.with(avatar).load(character.image).into(avatar)
+            //Glide tradicional
+            //Glide.with(avatar).load(character.image).into(avatar)
+
+            //Funsiones de extension
+            //Si character es nulo manda vacio
+            avatar.loadImageViewFromUrl(character.image ?: "")
 
             view.setOnClickListener{
-                Toast.makeText(view.context,"Character selected ${character.name}", Toast.LENGTH_LONG)
+                generalToast("Character selected ${character.name}")
             }
         }
 

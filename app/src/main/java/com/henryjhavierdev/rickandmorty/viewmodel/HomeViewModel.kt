@@ -1,13 +1,13 @@
-package com.henryjhavierdev.rickandmorty.ui.dashboard
+package com.henryjhavierdev.rickandmorty.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Using View Binding"
+        value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
 }

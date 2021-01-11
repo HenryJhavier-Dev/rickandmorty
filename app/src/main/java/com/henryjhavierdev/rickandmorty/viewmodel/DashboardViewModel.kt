@@ -1,13 +1,13 @@
-package com.henryjhavierdev.rickandmorty.ui.notifications
+package com.henryjhavierdev.rickandmorty.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class DashboardViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "Using View Binding"
     }
     val text: LiveData<String> = _text
 }
