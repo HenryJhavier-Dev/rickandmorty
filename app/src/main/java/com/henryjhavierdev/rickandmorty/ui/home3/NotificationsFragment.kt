@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.henryjhavierdev.rickandmorty.R
@@ -14,7 +16,11 @@ import com.henryjhavierdev.rickandmorty.viewmodel.NotificationsViewModel
 
 class NotificationsFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    // Use the 'by viewModels()' Kotlin property delegate from the activity-ktx artifact
+    private val notificationsViewModel: NotificationsViewModel by viewModels()
+
+    //MVVM otra forma de declarar private lateinit var notificationsViewModel: NotificationsViewModel
+
     private lateinit var binding: FragmentNotificationsBinding
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,
@@ -25,8 +31,8 @@ class NotificationsFragment : Fragment() {
             false
         )
 
-        notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        //MVVM otra formanotificationsViewModel =
+        //    ViewModelProvider(this).get(NotificationsViewModel::class.java)
 
 
         // Assign the component to a property in the binding class.

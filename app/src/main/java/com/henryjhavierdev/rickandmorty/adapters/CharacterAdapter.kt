@@ -12,20 +12,17 @@ import com.henryjhavierdev.rickandmorty.helpers.generalToast
 import com.henryjhavierdev.rickandmorty.helpers.loadImageViewFromUrl
 import com.henryjhavierdev.rickandmorty.model.Result
 
-class CharacterAdapter(val item:List<Result> = emptyList(), val typeTemplateItem:Int = 0 ) :RecyclerView.Adapter<CharacterAdapter.ViewHolderCharacter>(){
+class CharacterAdapter(private val items:List<Result> = emptyList()) :RecyclerView.Adapter<CharacterAdapter.ViewHolderCharacter>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCharacter {
-        //Dos tipos de template uno para usar como lista y otro como grid
-        return when (typeTemplateItem){
-            1 -> ViewHolderCharacter(LayoutInflater.from(parent.context).inflate(R.layout.view_grid_character_item, parent, false))
-            else -> ViewHolderCharacter(LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false))
+        return  ViewHolderCharacter(LayoutInflater.from(parent.context).
+        inflate(R.layout.item_character, parent, false))
         }
-    }
 
-    override fun getItemCount(): Int = item.size
+    override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolderCharacter, position: Int) {
-        holder.bind(character = item[position] )
+        holder.bind(character = items[position] )
     }
 
 

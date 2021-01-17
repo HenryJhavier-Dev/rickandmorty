@@ -46,6 +46,7 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
+            tools:listitem="@layout/view_grid_character_item"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

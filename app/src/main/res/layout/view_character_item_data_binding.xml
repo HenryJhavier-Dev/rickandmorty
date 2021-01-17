@@ -31,10 +31,11 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_home_avatar"
-                app:imageFromUrl="@{viewModelExample.getCharacter(positionExample).image}"
+                tools:srcCompat="@tools:sample/avatars"
                 android:layout_width="@dimen/character_image"
                 android:layout_height="@dimen/character_image"
-                />
+                app:imageFromUrl="@{viewModelExample.getCharacter(positionExample).image}"
+            />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"

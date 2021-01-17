@@ -15,6 +15,8 @@ import com.henryjhavierdev.rickandmorty.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
 
+    // Use the 'by viewModels()' Kotlin property delegate from the activity-ktx artifact
+    //MVVM otra forma de declarar  private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,
@@ -30,7 +32,7 @@ class HomeFragment : Fragment() {
 
        //Obtiene lista de personales de la propertie result que esta dentro de character
        //Media provider es un object y loadCharacter devuelve datos cableados
-        recyclerView.adapter = CharacterAdapter(MediaProvider.loadCharacter().results, 0)
+        recyclerView.adapter = CharacterAdapter(MediaProvider.loadCharacter().results)
 
         return root
     }

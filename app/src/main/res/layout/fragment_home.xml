@@ -8,6 +8,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home_character"
+        tools:listitem="@layout/item_character"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
