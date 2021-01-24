@@ -1,5 +1,6 @@
 package com.henryjhavierdev.rickandmorty.model
 
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class Character(
@@ -9,6 +10,7 @@ data class Character(
 
 data class Result (
     var id: Int? = 0 ,
+    @SerializedName("name_character")
     var name: String? = "",
     var status: String? = "",
     var species: String? = "",
