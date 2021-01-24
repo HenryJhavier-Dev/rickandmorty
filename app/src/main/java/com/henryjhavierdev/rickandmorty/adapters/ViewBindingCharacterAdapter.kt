@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.databinding.ViewCharacterItemDataBindingBinding
+import com.henryjhavierdev.rickandmorty.databinding.ViewGridCharacterItemBinding
 import com.henryjhavierdev.rickandmorty.helpers.generalToast
 import com.henryjhavierdev.rickandmorty.helpers.loadImageViewFromUrl
 import com.henryjhavierdev.rickandmorty.model.Result
@@ -29,7 +30,7 @@ class ViewBindingCharacterAdapter(val items:List<Result> = emptyList() )
 
     class ViewHolderCharacterViewBinding (val view: View):RecyclerView.ViewHolder(view){
 
-        private val binding = ViewCharacterItemDataBindingBinding.bind(view)
+        private val binding = ViewGridCharacterItemBinding.bind(view)
 
         fun bind ( character: Result) = with(binding){
 
