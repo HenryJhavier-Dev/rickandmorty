@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="character"
+            type="com.henryjhavierdev.rickandmorty.model.CharacterResultRs" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -25,6 +27,7 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_home_avatar"
+                app:imageFromUrl="@{character.image}"
                 android:layout_width="@dimen/character_image"
                 android:layout_height="@dimen/character_image"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -38,6 +41,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_home_name"
                     android:textAlignment="center"
+                    android:text="@{character.name}"
                     android:layout_marginTop="@dimen/cardv_view_margin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -45,6 +49,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_home_status"
+                    android:text="@{character.status}"
                     android:textAlignment="center"
                     android:layout_marginTop="@dimen/cardv_view_margin"
                     android:layout_width="match_parent"
@@ -53,6 +58,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_home_species"
+                    android:text="@{character.species}"
                     android:textAlignment="center"
                     android:layout_marginTop="@dimen/cardv_view_margin"
                     android:layout_width="match_parent"
@@ -61,6 +67,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_home_gender"
+                    android:text="@{character.gender}"
                     android:textAlignment="center"
                     android:layout_marginTop="@dimen/cardv_view_margin"
                     android:layout_width="match_parent"

@@ -4,6 +4,17 @@ buildscript {
         kotlin_version = "1.4.21"
         navigationVersion = "2.3.2"
         room_version = "2.2.6"
+        rxAndroidVersion = '2.1.1'
+        rxJavaVersion = '2.2.19'
+        gsonVersion = '2.8.6'
+
+        //Rx
+        rxAndroidLib = "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+        rxJavaLib = "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+        //Gson
+        gsonLib = "com.google.code.gson:gson:$gsonVersion"
+
+
     }
 
     repositories {

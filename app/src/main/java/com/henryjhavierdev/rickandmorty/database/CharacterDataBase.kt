@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.henryjhavierdev.rickandmorty.database.entity.EntityCharacter
-import com.henryjhavierdev.rickandmorty.util.DATABASE_NAME
+import com.henryjhavierdev.rickandmorty.utils.DATABASE_NAME
 
 @Database(entities = [EntityCharacter::class], version = 1, exportSchema = false)
 abstract class CharacterDataBase : RoomDatabase() {
@@ -38,7 +38,8 @@ abstract class CharacterDataBase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         CharacterDataBase::class.java,
-                        DATABASE_NAME)
+                        DATABASE_NAME
+                    )
                         // Wipes and rebuilds instead of migrating if no Migration object.
                         // migration with Room in this blog post:
                         // https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929

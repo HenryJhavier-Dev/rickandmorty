@@ -1,45 +1,54 @@
 package com.henryjhavierdev.rickandmorty.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.util.*
+import kotlinx.android.parcel.Parcelize
+
 
 data class Character(
-    var info: Info? = null,
-    var results: List<Result>
+    var results: List<CharacterResultRs>
 )
 
-data class Result (
-    var id: Int? = 0 ,
-    @SerializedName("name_character")
+@Parcelize
+data class CharacterResultRs(
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("image")
+    val image: String?,
+    @SerializedName("gender")
+    val gender: String,
+    @SerializedName("species")
+    val species: String,
+    @SerializedName("status")
+    val status: String,
+    @SerializedName("origin")
+    val origin: OriginRs,
+    @SerializedName("location")
+    val location: LocationRs,
+    @SerializedName("episode")
+    val episodeList: List<String>
+): Parcelable
+
+@Parcelize
+class OriginRs (
+    @SerializedName("name")
     var name: String? = "",
-    var status: String? = "",
-    var species: String? = "",
-    var type: String? = "",
-    var gender: String? = "",
-    var origin: Origin? = null,
-    var location: Location? = null,
-    var image: String? = "",
-    var episode: List<String>? = null,
-    var url: String? = "",
-    var created: Date? = null
-)
-
-data class Info (
-    var count:Int = 0,
-    var pages:Int = 0,
-    var next: String? = null,
-    var prev: Any? = null,
-)
-
-class Origin (
-    var name: String? = "",
+    @SerializedName("url")
     var url: String? = ""
-)
+): Parcelable
 
-class Location (
+@Parcelize
+class LocationRs (
+    @SerializedName("name")
     var name: String? = "",
+    @SerializedName("url")
     var url: String? = ""
-)
+): Parcelable
+
+
+
 
 
 

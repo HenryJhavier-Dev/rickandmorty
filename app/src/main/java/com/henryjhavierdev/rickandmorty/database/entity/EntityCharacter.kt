@@ -3,9 +3,6 @@ package com.henryjhavierdev.rickandmorty.database.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.henryjhavierdev.rickandmorty.model.Location
-import com.henryjhavierdev.rickandmorty.model.Origin
-import java.util.*
 
 @Entity(tableName = "character_table")
 data class EntityCharacter (

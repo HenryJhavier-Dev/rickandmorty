@@ -1,26 +1,38 @@
 package com.henryjhavierdev.rickandmorty.config.network
 
-import com.henryjhavierdev.rickandmorty.util.URL_BASE
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ServiceBuilder {
+abstract class ServiceBuilder<T: Any>(
+    var URL_BASE: String
+) {
 
     private val logger = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
-    private val client = OkHttpClient.Builder().addInterceptor(logger).build()
+    private val okHttpClient = OkHttpClient.Builder().addInterceptor(logger).build()
 
-    private val retrofit = Retrofit.Builder()
+    fun buildRetrofit(): Retrofit = Retrofit.Builder()
         .baseUrl(URL_BASE)
-        .client(client)
+        .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 
+    inline fun <reified T:Any> getService(): T =
+        buildRetrofit().run {
+            create(T::class.java)
+        }
 
-    val dataAccess: ApiService = retrofit.create(ApiService::class.java)
 
 }
+
+//val dataAccess: ApiService = buildRetrofit().create(ApiService::class.java)
+
+class CharacterRequest(urlBase: String): ServiceBuilder<ApiService>(urlBase)
+
+//class EpisodeRequest(urlBase: String): BaseRequest<EpisodeService>(URL_BASE)
