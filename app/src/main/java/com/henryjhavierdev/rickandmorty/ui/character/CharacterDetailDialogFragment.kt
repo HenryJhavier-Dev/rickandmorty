@@ -17,6 +17,9 @@ import com.henryjhavierdev.rickandmorty.databinding.FragmentCharacterDetailBindi
 import com.henryjhavierdev.rickandmorty.dataservice.EpisodeRequest
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
+import com.henryjhavierdev.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
+import com.henryjhavierdev.rickandmorty.usecases.GetFavoriteCharacterStatusUseCase
+import com.henryjhavierdev.rickandmorty.usecases.UpdateFavoriteCharacterStatusUseCase
 import com.henryjhavierdev.rickandmorty.utils.URL_BASE
 import com.henryjhavierdev.rickandmorty.utils.bindCircularImageUrl
 import com.henryjhavierdev.rickandmorty.utils.getViewModel
@@ -36,14 +39,30 @@ class CharacterDetailDialogFragment : DialogFragment() {
     private val episodeRequest: EpisodeRequest by lazy {
         EpisodeRequest(URL_BASE)
     }
-
     private val characterDao: ICharacterDao by lazy {
         CharacterDataBase.getInstanceDataBase(requireActivity().applicationContext).characterDao()
     }
 
+    private val getFavoriteCharacterStatusUseCase: GetFavoriteCharacterStatusUseCase by lazy {
+        GetFavoriteCharacterStatusUseCase(characterDao)
+    }
+
+    private val updateFavoriteCharacterStatusUseCase: UpdateFavoriteCharacterStatusUseCase by lazy {
+        UpdateFavoriteCharacterStatusUseCase(characterDao)
+    }
+
+    private val getEpisodeFromCharacterUseCase: GetEpisodeFromCharacterUseCase by lazy {
+        GetEpisodeFromCharacterUseCase(episodeRequest)
+    }
+
     private val characterDetailViewModel: CharacterDetailDialogFragmentViewModel by lazy {
         getViewModel {
-            CharacterDetailDialogFragmentViewModel(args.character,  characterDao, episodeRequest)
+            CharacterDetailDialogFragmentViewModel(
+                args.character,
+                getEpisodeFromCharacterUseCase,
+                getFavoriteCharacterStatusUseCase,
+                updateFavoriteCharacterStatusUseCase
+            )
         }
     }
 

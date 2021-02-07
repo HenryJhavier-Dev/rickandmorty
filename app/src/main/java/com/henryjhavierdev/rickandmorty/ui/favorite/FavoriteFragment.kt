@@ -19,6 +19,7 @@ import com.henryjhavierdev.rickandmorty.database.toCharacterRs
 import com.henryjhavierdev.rickandmorty.databinding.FragmentFavoriteBinding
 import com.henryjhavierdev.rickandmorty.model.CharacterEntity
 import com.henryjhavierdev.rickandmorty.presentation.Event
+import com.henryjhavierdev.rickandmorty.usecases.GetAllFavoriteCharactersUseCase
 import com.henryjhavierdev.rickandmorty.utils.setItemDecorationSpacing
 import com.henryjhavierdev.rickandmorty.viewmodel.FavoriteViewModel
 import kotlinx.android.synthetic.main.fragment_favorite.*
@@ -32,8 +33,13 @@ class FavoriteFragment : Fragment(), FavoriteListener {
     private val characterDao: ICharacterDao by lazy {
          CharacterDataBase.getInstanceDataBase(requireActivity().applicationContext).characterDao()
     }
+
+    private val getAllFavoriteCharactersUseCase: GetAllFavoriteCharactersUseCase by lazy {
+        GetAllFavoriteCharactersUseCase(characterDao)
+    }
+
     private val favoriteViewModel: FavoriteViewModel by lazy {
-            FavoriteViewModel(characterDao)
+            FavoriteViewModel(getAllFavoriteCharactersUseCase)
     }
 
 

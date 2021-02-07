@@ -9,12 +9,15 @@ import com.henryjhavierdev.rickandmorty.dataservice.toCharacterServerList
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.model.CharacterRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
+import com.henryjhavierdev.rickandmorty.usecases.GetAllCharactersUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
+//Los casos de uso son los que manejan la logica
+// y los view model solo sirven de intermediarios
 class HomeViewModel(
-    private val characterRequest: CharacterRequest
+    private val getAllCharactersUseCase: GetAllCharactersUseCase
 ) : ViewModel() {
 
     private val disposable = CompositeDisposable()
@@ -57,12 +60,7 @@ class HomeViewModel(
     fun onGetAllCharacters() {
 
         disposable.add(
-            characterRequest
-                        .getService<CharacterService>()
-                        .getAllCharacters(currentPage)
-                        .map(CharacterRs::toCharacterServerList)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
+            getAllCharactersUseCase.invoke(currentPage)
                         .doOnSubscribe {
                             isLoading = true
                             _events.value = Event(CharacterListNavigation.ShowLoading)

@@ -3,24 +3,21 @@ package com.henryjhavierdev.rickandmorty.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.henryjhavierdev.rickandmorty.dataservice.network.EpisodeService
-import com.henryjhavierdev.rickandmorty.database.ICharacterDao
-import com.henryjhavierdev.rickandmorty.dataservice.EpisodeRequest
 import com.henryjhavierdev.rickandmorty.dataservice.toCharacterEntity
 import com.henryjhavierdev.rickandmorty.model.CharacterEntity
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.model.EpisodeRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
-import io.reactivex.Maybe
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.henryjhavierdev.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
+import com.henryjhavierdev.rickandmorty.usecases.GetFavoriteCharacterStatusUseCase
+import com.henryjhavierdev.rickandmorty.usecases.UpdateFavoriteCharacterStatusUseCase
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 
 class CharacterDetailDialogFragmentViewModel(
     private val character: CharacterResultRs? = null,
-    private val characterDao: ICharacterDao,
-    private val episodeRequest: EpisodeRequest
+    private val getEpisodeFromCharacterUseCase: GetEpisodeFromCharacterUseCase,
+    private val getFavoriteCharacterStatusUseCase: GetFavoriteCharacterStatusUseCase,
+    private val updateFavoriteCharacterStatusUseCase: UpdateFavoriteCharacterStatusUseCase
 ) : ViewModel() {
 
     //region Fields
@@ -67,21 +64,7 @@ class CharacterDetailDialogFragmentViewModel(
         println(" No pudo guardarlo $characterEntity")
 
         disposable.add(
-            characterDao.getCharacterById(characterEntity.id)
-                .isEmpty
-                .flatMapMaybe { isEmpty ->
-
-                    println(" No pudo guardarlo $characterEntity")
-
-                    if(isEmpty){
-                        characterDao.insertCharacter(characterEntity)
-                    }else{
-                        characterDao.deleteCharacter(characterEntity)
-                    }
-                    Maybe.just(isEmpty)
-                }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+           updateFavoriteCharacterStatusUseCase.invoke(characterEntity)
                 .subscribe { isFavorite ->
                     _isFavorite.value = isFavorite
                 }
@@ -95,13 +78,8 @@ class CharacterDetailDialogFragmentViewModel(
 
     private fun validateFavoriteCharacterStatus(characterId: Int){
         disposable.add(
-            characterDao.getCharacterById(characterId)
-                .isEmpty
-                .flatMapMaybe { isEmpty ->
-                    Maybe.just(!isEmpty)
-                }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+            getFavoriteCharacterStatusUseCase
+                .invoke(characterId)
                 .subscribe (
                     { isFavorite ->
                     _isFavorite.value = isFavorite
@@ -116,17 +94,7 @@ class CharacterDetailDialogFragmentViewModel(
 
     private fun requestShowEpisodeList(episodeUrlList: List<String>){
         disposable.add(
-            Observable.fromIterable(episodeUrlList)
-                .flatMap { episode: String ->
-                    episodeRequest.URL_BASE = episode
-                    episodeRequest
-                        .getService<EpisodeService>()
-                        .getEpisode()
-                        .toObservable()
-                }
-                .toList()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+            getEpisodeFromCharacterUseCase.invoke(episodeUrlList)
                 .doOnSubscribe {
                     _events.value = Event(CharacterDetailNavigation.ShowEpisodeListLoading)
                 }

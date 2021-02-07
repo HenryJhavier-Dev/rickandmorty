@@ -9,12 +9,13 @@ import com.henryjhavierdev.rickandmorty.viewmodel.FavoriteViewModel.FavoriteList
 import com.henryjhavierdev.rickandmorty.database.ICharacterDao
 import com.henryjhavierdev.rickandmorty.model.CharacterEntity
 import com.henryjhavierdev.rickandmorty.presentation.Event
+import com.henryjhavierdev.rickandmorty.usecases.GetAllFavoriteCharactersUseCase
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteViewModel(
-    private  val characterDao: ICharacterDao
+    private  val getAllFavoriteCharactersUseCase: GetAllFavoriteCharactersUseCase
 ): ViewModel() {
 
     //region Fields
@@ -26,10 +27,7 @@ class FavoriteViewModel(
 
     private val _favoriteCharacterList: LiveData<List<CharacterEntity>>
         get() = LiveDataReactiveStreams.fromPublisher(
-            characterDao
-                .getAllFavoriteCharacters()
-                .onErrorReturn { emptyList() }
-                .subscribeOn(Schedulers.io())
+            getAllFavoriteCharactersUseCase.invoke()
         )
     val favoriteCharacterList: LiveData<List<CharacterEntity>>
         get() = _favoriteCharacterList

@@ -18,6 +18,7 @@ import com.henryjhavierdev.rickandmorty.databinding.FragmentHomeBinding
 import com.henryjhavierdev.rickandmorty.dataservice.CharacterRequest
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
+import com.henryjhavierdev.rickandmorty.usecases.GetAllCharactersUseCase
 import com.henryjhavierdev.rickandmorty.utils.URL_BASE
 import com.henryjhavierdev.rickandmorty.utils.getViewModel
 import com.henryjhavierdev.rickandmorty.utils.setItemDecorationSpacing
@@ -35,8 +36,12 @@ class HomeFragment : Fragment(), CharacterListener {
         CharacterRequest(URL_BASE)
     }
 
+    private val getAllCharactersUseCase: GetAllCharactersUseCase by lazy {
+        GetAllCharactersUseCase(characterRequest)
+    }
+
     private val homeViewModel: HomeViewModel by lazy {
-        getViewModel { HomeViewModel(characterRequest) }
+        getViewModel { HomeViewModel(getAllCharactersUseCase) }
     }
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState:
