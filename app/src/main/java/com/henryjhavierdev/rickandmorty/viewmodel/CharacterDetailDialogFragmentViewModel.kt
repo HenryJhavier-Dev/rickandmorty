@@ -3,10 +3,8 @@ package com.henryjhavierdev.rickandmorty.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.henryjhavierdev.rickandmorty.dataservice.toCharacterEntity
-import com.henryjhavierdev.rickandmorty.model.CharacterEntity
-import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
-import com.henryjhavierdev.rickandmorty.model.EpisodeRs
+import com.henryjhavierdev.domain.Character
+import com.henryjhavierdev.domain.Episode
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
 import com.henryjhavierdev.rickandmorty.usecases.GetFavoriteCharacterStatusUseCase
@@ -14,7 +12,7 @@ import com.henryjhavierdev.rickandmorty.usecases.UpdateFavoriteCharacterStatusUs
 import io.reactivex.disposables.CompositeDisposable
 
 class CharacterDetailDialogFragmentViewModel(
-    private val character: CharacterResultRs? = null,
+    private val character: Character? = null,
     private val getEpisodeFromCharacterUseCase: GetEpisodeFromCharacterUseCase,
     private val getFavoriteCharacterStatusUseCase: GetFavoriteCharacterStatusUseCase,
     private val updateFavoriteCharacterStatusUseCase: UpdateFavoriteCharacterStatusUseCase
@@ -23,8 +21,8 @@ class CharacterDetailDialogFragmentViewModel(
     //region Fields
     private val disposable = CompositeDisposable()
 
-    private val _characterValues = MutableLiveData<CharacterResultRs>()
-    val characterValues: LiveData<CharacterResultRs> get() = _characterValues
+    private val _characterValues = MutableLiveData<Character>()
+    val characterValues: LiveData<Character> get() = _characterValues
 
     private val _isFavorite = MutableLiveData<Boolean>()
     val isFavorite: LiveData<Boolean> get() = _isFavorite
@@ -59,12 +57,11 @@ class CharacterDetailDialogFragmentViewModel(
     }
 
     fun onUpdateFavoriteCharacterStatus() {
-        val characterEntity: CharacterEntity = character!!.toCharacterEntity()
 
-        println(" No pudo guardarlo $characterEntity")
+        println(" No pudo guardarlo $character")
 
         disposable.add(
-           updateFavoriteCharacterStatusUseCase.invoke(characterEntity)
+           updateFavoriteCharacterStatusUseCase.invoke(character!!)
                 .subscribe { isFavorite ->
                     _isFavorite.value = isFavorite
                 }
@@ -116,7 +113,7 @@ class CharacterDetailDialogFragmentViewModel(
 
     sealed class CharacterDetailNavigation {
         data class ShowEpisodeError(val error: Throwable) : CharacterDetailNavigation()
-        data class ShowEpisodeList(val episodeList: List<EpisodeRs>) : CharacterDetailNavigation()
+        data class ShowEpisodeList(val episodeList: List<Episode>) : CharacterDetailNavigation()
         object CloseActivity : CharacterDetailNavigation()
         object HideEpisodeListLoading : CharacterDetailNavigation()
         object ShowEpisodeListLoading : CharacterDetailNavigation()

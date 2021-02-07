@@ -9,13 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.EpisodeListAdapter
 import com.henryjhavierdev.rickandmorty.database.CharacterDataBase
 import com.henryjhavierdev.rickandmorty.database.ICharacterDao
 import com.henryjhavierdev.rickandmorty.databinding.FragmentCharacterDetailBinding
 import com.henryjhavierdev.rickandmorty.dataservice.EpisodeRequest
-import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
+import com.henryjhavierdev.rickandmorty.dataservice.toCharacterDomain
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
 import com.henryjhavierdev.rickandmorty.usecases.GetFavoriteCharacterStatusUseCase
@@ -58,7 +59,7 @@ class CharacterDetailDialogFragment : DialogFragment() {
     private val characterDetailViewModel: CharacterDetailDialogFragmentViewModel by lazy {
         getViewModel {
             CharacterDetailDialogFragmentViewModel(
-                args.character,
+                args.character.toCharacterDomain(),
                 getEpisodeFromCharacterUseCase,
                 getFavoriteCharacterStatusUseCase,
                 updateFavoriteCharacterStatusUseCase
@@ -114,7 +115,7 @@ class CharacterDetailDialogFragment : DialogFragment() {
 
     //region Private Methods
 
-    private fun loadCharacter(character: CharacterResultRs){
+    private fun loadCharacter(character: Character){
         binding.characterImage.bindCircularImageUrl(
             url = character.image,
             placeholder = R.drawable.ic_camera_alt_black,

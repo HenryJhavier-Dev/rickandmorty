@@ -1,41 +1,57 @@
 package com.henryjhavierdev.rickandmorty.dataservice
 
 import com.henryjhavierdev.rickandmorty.model.*
+import com.henryjhavierdev.domain.Character
+import com.henryjhavierdev.domain.Episode
+import com.henryjhavierdev.domain.Location
+import com.henryjhavierdev.domain.Origin
+import com.henryjhavierdev.rickandmorty.database.toLocationDomain
+import com.henryjhavierdev.rickandmorty.database.toOriginDomain
 
-fun CharacterRs.toCharacterServerList(): List<CharacterResultRs> = results.map {
+fun CharacterRs.toCharacterDomainList(): List<Character> = results.map {
     it.run{
-        CharacterResultRs(
+        Character(
             id,
             name,
             image,
             gender,
             species,
             status,
-            origin,
-            location,
-            episodeList?.map { episode -> "$episode/" }
+            origin?.toOriginDomain(),
+            location?.toLocationDomain(),
+            episodeList?.map { episode -> "$episode/" } ?: emptyList()
         )
     }
 }
 
-fun CharacterResultRs.toCharacterEntity() = CharacterEntity(
-    id,
-    name,
-    image,
-    gender,
-    species,
-    status,
-    origin?.toOriginEntity(),
-    location?.toLocationEntity(),
-    episodeList ?: emptyList()
+fun CharacterResultRs.toCharacterDomain(): Character =
+        Character(
+            id,
+            name,
+            image,
+            gender,
+            species,
+            status,
+            origin?.toOriginDomain(),
+            location?.toLocationDomain(),
+            episodeList?.map { episode -> "$episode/" } ?: emptyList()
+        )
+
+
+fun OriginRs.toOriginDomain() = Origin(
+    name ?: "",
+    url ?: ""
 )
 
-fun OriginRs.toOriginEntity() = OriginEntity(
-    name,
-    url
+fun LocationRs.toLocationDomain() = Location(
+    name ?: "",
+    url ?: ""
 )
 
-fun LocationRs.toLocationEntity() = LocationEntity(
-    name,
-    url
+fun EpisodeRs.toEpisodeDomain() = Episode(
+    id_episode,
+    name_episode
 )
+
+
+

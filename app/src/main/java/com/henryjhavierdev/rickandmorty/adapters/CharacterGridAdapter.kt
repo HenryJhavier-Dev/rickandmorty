@@ -1,22 +1,20 @@
 package com.henryjhavierdev.rickandmorty.adapters
 
 import android.view.ViewGroup
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
+import com.henryjhavierdev.domain.Character
 import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.databinding.ViewGridCharacterItemBinding
+import com.henryjhavierdev.rickandmorty.parcelable.toCharacterResultRs
 import com.henryjhavierdev.rickandmorty.utils.bindingInflate
-import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 
 class CharacterGridAdapter(
     private val listener: CharacterListener
 ): RecyclerView.Adapter<CharacterGridAdapter.CharacterGridViewHolder>() {
 
-    private val characterList: MutableList<CharacterResultRs> = mutableListOf()
+    private val characterList: MutableList<Character> = mutableListOf()
 
-    fun addData(newData: List<CharacterResultRs>) {
+    fun addData(newData: List<Character>) {
         characterList.addAll(newData)
         notifyDataSetChanged()
     }
@@ -42,11 +40,11 @@ class CharacterGridAdapter(
     ): RecyclerView.ViewHolder(dataBinding.root) {
 
         //region Public Methods
-        fun bind(item: CharacterResultRs){
+        fun bind(item: Character){
 
             dataBinding.character = item
             itemView.setOnClickListener {
-                listener.openCharacterDetail(item)
+                listener.openCharacterDetail(item.toCharacterResultRs())
             }
         }
 

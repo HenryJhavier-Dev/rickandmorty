@@ -1,8 +1,8 @@
 package com.henryjhavierdev.rickandmorty.adapters
 
-import com.henryjhavierdev.rickandmorty.model.CharacterEntity
+import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 
 interface FavoriteListener {
-    fun onFavoriteListener(character: CharacterEntity)
+    fun onFavoriteListener(character: CharacterResultRs)
 }

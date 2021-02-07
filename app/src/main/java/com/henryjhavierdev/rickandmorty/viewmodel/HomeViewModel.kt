@@ -3,16 +3,11 @@ package com.henryjhavierdev.rickandmorty.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.henryjhavierdev.rickandmorty.dataservice.CharacterRequest
-import com.henryjhavierdev.rickandmorty.dataservice.network.CharacterService
-import com.henryjhavierdev.rickandmorty.dataservice.toCharacterServerList
+import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
-import com.henryjhavierdev.rickandmorty.model.CharacterRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.rickandmorty.usecases.GetAllCharactersUseCase
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 
 //Los casos de uso son los que manejan la logica
 // y los view model solo sirven de intermediarios
@@ -94,7 +89,7 @@ class HomeViewModel(
 
     sealed class CharacterListNavigation {
         data class ShowCharacterError(val error: Throwable) : CharacterListNavigation();
-        data class ShowCharacterList(val characterList: List<CharacterResultRs>) : CharacterListNavigation()
+        data class ShowCharacterList(val characterList: List<Character>) : CharacterListNavigation()
         object HideLoading : CharacterListNavigation()
         object ShowLoading : CharacterListNavigation()
     }

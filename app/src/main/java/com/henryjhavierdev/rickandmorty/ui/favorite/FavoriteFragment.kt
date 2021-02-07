@@ -10,14 +10,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.FavoriteListAdapter
 import com.henryjhavierdev.rickandmorty.adapters.FavoriteListener
 import com.henryjhavierdev.rickandmorty.database.CharacterDataBase
 import com.henryjhavierdev.rickandmorty.database.ICharacterDao
-import com.henryjhavierdev.rickandmorty.database.toCharacterRs
+import com.henryjhavierdev.rickandmorty.database.toCharacterEntity
 import com.henryjhavierdev.rickandmorty.databinding.FragmentFavoriteBinding
-import com.henryjhavierdev.rickandmorty.model.CharacterEntity
+import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.rickandmorty.usecases.GetAllFavoriteCharactersUseCase
 import com.henryjhavierdev.rickandmorty.utils.setItemDecorationSpacing
@@ -101,9 +102,8 @@ class FavoriteFragment : Fragment(), FavoriteListener {
     }
     //endregion
 
-
-    override fun onFavoriteListener(character: CharacterEntity) {
-        val bundle = bundleOf("character" to character.toCharacterRs())
-        findNavController().navigate(R.id.characterDetailFragment,bundle)    }
+    override fun onFavoriteListener(character: CharacterResultRs) {
+        val bundle = bundleOf("character" to character)
+        findNavController().navigate(R.id.characterDetailFragment,bundle)       }
 
 }

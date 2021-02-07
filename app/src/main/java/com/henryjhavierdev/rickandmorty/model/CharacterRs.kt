@@ -48,10 +48,10 @@ class LocationRs (
 ): Parcelable
 
 data class EpisodeRs(
+    @SerializedName("id")
+    var id_episode: Int = 0,
     @SerializedName("name")
-    var name: String? = "",
-    @SerializedName("url")
-    var url: String? = ""
+    var name_episode: String = ""
 )
 
 

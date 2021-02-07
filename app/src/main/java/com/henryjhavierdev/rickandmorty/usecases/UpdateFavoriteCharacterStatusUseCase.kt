@@ -1,6 +1,8 @@
 package com.henryjhavierdev.rickandmorty.usecases
 
+import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.database.ICharacterDao
+import com.henryjhavierdev.rickandmorty.database.toCharacterEntity
 import com.henryjhavierdev.rickandmorty.model.CharacterEntity
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,7 +12,8 @@ class UpdateFavoriteCharacterStatusUseCase (
     private val characterDao: ICharacterDao
     ) {
 
-    fun invoke(characterEntity: CharacterEntity): Maybe<Boolean> {
+    fun invoke(character: Character): Maybe<Boolean> {
+        val characterEntity = character.toCharacterEntity()
         return characterDao.getCharacterById(characterEntity.id)
             .isEmpty
             .flatMapMaybe { isEmpty ->

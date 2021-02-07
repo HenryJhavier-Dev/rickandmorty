@@ -2,19 +2,19 @@ package com.henryjhavierdev.rickandmorty.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.henryjhavierdev.domain.Episode
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.databinding.ItemListEpisodeBinding
-import com.henryjhavierdev.rickandmorty.model.EpisodeRs
 import com.henryjhavierdev.rickandmorty.utils.bindingInflate
 
 
 class EpisodeListAdapter(
-    private val listener: (EpisodeRs) -> Unit
+    private val listener: (Episode) -> Unit
 ): RecyclerView.Adapter<EpisodeListAdapter.EpisodeListViewHolder>() {
 
-    private val episodeList: MutableList<EpisodeRs> = mutableListOf()
+    private val episodeList: MutableList<Episode> = mutableListOf()
 
-    fun updateData(newData: List<EpisodeRs>) {
+    fun updateData(newData: List<Episode>) {
         episodeList.clear()
         episodeList.addAll(newData)
         notifyDataSetChanged()
@@ -34,11 +34,11 @@ class EpisodeListAdapter(
 
     class EpisodeListViewHolder(
         private val dataBinding: ItemListEpisodeBinding,
-        private val listener: (EpisodeRs) -> Unit
+        private val listener: (Episode) -> Unit
     ): RecyclerView.ViewHolder(dataBinding.root) {
 
         //region Public Methods
-        fun bind(item: EpisodeRs){
+        fun bind(item: Episode){
             dataBinding.episode = item
             itemView.setOnClickListener { listener(item) }
         }

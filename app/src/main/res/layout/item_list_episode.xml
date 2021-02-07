@@ -5,7 +5,7 @@
     <data>
         <variable
             name="episode"
-            type="com.henryjhavierdev.rickandmorty.model.EpisodeRs" />
+            type="com.henryjhavierdev.domain.Episode" />
     </data>
 
     <LinearLayout

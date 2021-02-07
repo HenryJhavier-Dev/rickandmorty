@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.CharacterGridAdapter
 import com.henryjhavierdev.rickandmorty.adapters.CharacterListener
@@ -113,10 +114,9 @@ class HomeFragment : Fragment(), CharacterListener {
         }
     }
 
+
     override fun openCharacterDetail(character: CharacterResultRs) {
         val bundle = bundleOf("character" to character)
-        findNavController().navigate(R.id.characterDetailFragment,bundle)
-    }
-
+        findNavController().navigate(R.id.characterDetailFragment,bundle)    }
 
 }
