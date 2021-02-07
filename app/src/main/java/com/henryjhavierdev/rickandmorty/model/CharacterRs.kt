@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 
-data class Character(
+data class CharacterRs(
     var results: List<CharacterResultRs>
 )
 
@@ -24,11 +24,11 @@ data class CharacterResultRs(
     @SerializedName("status")
     val status: String,
     @SerializedName("origin")
-    val origin: OriginRs,
+    val origin: OriginRs?,
     @SerializedName("location")
-    val location: LocationRs,
+    val location: LocationRs?,
     @SerializedName("episode")
-    val episodeList: List<String>
+    val episodeList: List<String>?
 ): Parcelable
 
 @Parcelize
@@ -46,6 +46,15 @@ class LocationRs (
     @SerializedName("url")
     var url: String? = ""
 ): Parcelable
+
+data class EpisodeRs(
+    @SerializedName("name")
+    var name: String? = "",
+    @SerializedName("url")
+    var url: String? = ""
+)
+
+
 
 
 

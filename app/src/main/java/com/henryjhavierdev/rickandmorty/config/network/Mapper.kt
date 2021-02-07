@@ -1,9 +1,8 @@
 package com.henryjhavierdev.rickandmorty.config.network
 
-import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
-import com.henryjhavierdev.rickandmorty.model.Character
+import com.henryjhavierdev.rickandmorty.model.*
 
-fun Character.toCharacterList(): List<CharacterResultRs> = results.map {
+fun CharacterRs.toCharacterServerList(): List<CharacterResultRs> = results.map {
     it.run{
         CharacterResultRs(
             id,
@@ -14,30 +13,29 @@ fun Character.toCharacterList(): List<CharacterResultRs> = results.map {
             status,
             origin,
             location,
-            episodeList.map { episode -> "$episode/" }
+            episodeList?.map { episode -> "$episode/" }
         )
     }
 }
 
-/*
-fun CharacterServer.toCharacterEntity() = CharacterEntity(
+fun CharacterResultRs.toCharacterEntity() = CharacterEntity(
     id,
     name,
     image,
     gender,
     species,
     status,
-    origin.toOriginEntity(),
-    location.toLocationEntity(),
-    episodeList
+    origin?.toOriginEntity(),
+    location?.toLocationEntity(),
+    episodeList ?: emptyList()
 )
 
-fun OriginServer.toOriginEntity() = OriginEntity(
+fun OriginRs.toOriginEntity() = OriginEntity(
     name,
     url
 )
 
-fun LocationServer.toLocationEntity() = LocationEntity(
+fun LocationRs.toLocationEntity() = LocationEntity(
     name,
     url
-)*/
+)

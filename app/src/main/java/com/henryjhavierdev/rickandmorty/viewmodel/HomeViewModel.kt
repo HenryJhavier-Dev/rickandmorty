@@ -1,16 +1,16 @@
-package com.henryjhavierdev.rickandmorty.viewmodel.home
+package com.henryjhavierdev.rickandmorty.viewmodel
 
 import androidx.lifecycle.*
-import com.henryjhavierdev.rickandmorty.config.network.ApiService
+import com.henryjhavierdev.rickandmorty.config.network.CharacterService
+
 import com.henryjhavierdev.rickandmorty.config.network.CharacterRequest
-import com.henryjhavierdev.rickandmorty.config.network.toCharacterList
-import com.henryjhavierdev.rickandmorty.model.Character
+import com.henryjhavierdev.rickandmorty.config.network.toCharacterServerList
+import com.henryjhavierdev.rickandmorty.model.CharacterRs
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val characterRequest: CharacterRequest
@@ -57,9 +57,9 @@ class HomeViewModel(
 
         disposable.add(
             characterRequest
-                        .getService<ApiService>()
+                        .getService<CharacterService>()
                         .getAllCharacters(currentPage)
-                        .map(Character::toCharacterList)
+                        .map(CharacterRs::toCharacterServerList)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .doOnSubscribe {

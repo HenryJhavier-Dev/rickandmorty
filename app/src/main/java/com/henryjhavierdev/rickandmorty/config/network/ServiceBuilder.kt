@@ -1,5 +1,6 @@
 package com.henryjhavierdev.rickandmorty.config.network
 
+import com.henryjhavierdev.rickandmorty.model.EpisodeRs
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -33,6 +34,6 @@ abstract class ServiceBuilder<T: Any>(
 
 //val dataAccess: ApiService = buildRetrofit().create(ApiService::class.java)
 
-class CharacterRequest(urlBase: String): ServiceBuilder<ApiService>(urlBase)
+class CharacterRequest(urlBase: String): ServiceBuilder<CharacterService>(urlBase)
 
-//class EpisodeRequest(urlBase: String): BaseRequest<EpisodeService>(URL_BASE)
+class EpisodeRequest(urlBase: String): ServiceBuilder<EpisodeService>(urlBase)

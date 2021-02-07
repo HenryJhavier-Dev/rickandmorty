@@ -7,10 +7,17 @@ buildscript {
         rxAndroidVersion = '2.1.1'
         rxJavaVersion = '2.2.19'
         gsonVersion = '2.8.6'
+        reactiveStreamsVersion = '2.2.0'
+        nav_version = "2.3.2"
 
         //Rx
         rxAndroidLib = "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
         rxJavaLib = "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+        //RX room
+        roomRxJavaLib = "androidx.room:room-rxjava2:$room_version"
+        //Reactive Streams
+        reactiveStreamsLib = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$reactiveStreamsVersion"
+
         //Gson
         gsonLib = "com.google.code.gson:gson:$gsonVersion"
 
@@ -24,6 +31,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

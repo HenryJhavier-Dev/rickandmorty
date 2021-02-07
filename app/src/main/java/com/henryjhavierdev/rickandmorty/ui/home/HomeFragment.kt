@@ -1,33 +1,37 @@
 package com.henryjhavierdev.rickandmorty.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.CharacterGridAdapter
+import com.henryjhavierdev.rickandmorty.adapters.CharacterListener
 import com.henryjhavierdev.rickandmorty.config.network.CharacterRequest
 import com.henryjhavierdev.rickandmorty.databinding.FragmentHomeBinding
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
+import com.henryjhavierdev.rickandmorty.utils.URL_BASE
 import com.henryjhavierdev.rickandmorty.utils.getViewModel
 import com.henryjhavierdev.rickandmorty.utils.setItemDecorationSpacing
 import com.henryjhavierdev.rickandmorty.utils.showLongToast
-import com.henryjhavierdev.rickandmorty.utils.URL_BASE
-import com.henryjhavierdev.rickandmorty.viewmodel.home.HomeViewModel
+import com.henryjhavierdev.rickandmorty.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CharacterListener {
 
     private lateinit var binding: FragmentHomeBinding
 
     private lateinit var characterGridAdapter: CharacterGridAdapter
-    private lateinit var listener: OnCharacterListFragmentListener
 
     private val characterRequest: CharacterRequest by lazy {
         CharacterRequest(URL_BASE)
@@ -51,9 +55,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        characterGridAdapter = CharacterGridAdapter { character ->
-            listener.openCharacterDetail(character)
-        }
+        characterGridAdapter = CharacterGridAdapter(this)
 
         characterGridAdapter.setHasStableIds(true)
 
@@ -108,15 +110,10 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-    interface OnCharacterListFragmentListener {
-        fun openCharacterDetail(character: CharacterResultRs)
+    override fun openCharacterDetail(character: CharacterResultRs) {
+        val bundle = bundleOf("character" to character)
+        findNavController().navigate(R.id.characterDetailFragment,bundle)
     }
 
-    /*companion object {
 
-        fun newInstance(args: Bundle? = Bundle()) = CharacterListFragment().apply {
-            arguments = args
-        }
-    }*/
 }

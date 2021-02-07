@@ -1,6 +1,9 @@
 package com.henryjhavierdev.rickandmorty.adapters
 
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.databinding.ViewGridCharacterItemBinding
@@ -8,7 +11,7 @@ import com.henryjhavierdev.rickandmorty.utils.bindingInflate
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 
 class CharacterGridAdapter(
-    private val listener: (CharacterResultRs) -> Unit
+    private val listener: CharacterListener
 ): RecyclerView.Adapter<CharacterGridAdapter.CharacterGridViewHolder>() {
 
     private val characterList: MutableList<CharacterResultRs> = mutableListOf()
@@ -35,15 +38,16 @@ class CharacterGridAdapter(
 
     class CharacterGridViewHolder(
         private val dataBinding: ViewGridCharacterItemBinding,
-        private val listener: (CharacterResultRs) -> Unit
+        private val listener: CharacterListener
     ): RecyclerView.ViewHolder(dataBinding.root) {
 
         //region Public Methods
         fun bind(item: CharacterResultRs){
 
             dataBinding.character = item
-
-            itemView.setOnClickListener { listener(item) }
+            itemView.setOnClickListener {
+                listener.openCharacterDetail(item)
+            }
         }
 
     }

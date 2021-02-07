@@ -1,19 +1,27 @@
 package com.henryjhavierdev.rickandmorty.config.network
 
 
-import com.henryjhavierdev.rickandmorty.model.Character
+import com.henryjhavierdev.rickandmorty.model.CharacterRs
+import com.henryjhavierdev.rickandmorty.model.EpisodeRs
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ApiService {
+interface CharacterService {
 
     @GET("character")
-    suspend fun getCharacters(): Character
+    suspend fun getCharacters(): CharacterRs
 
     @GET("character/?")
     fun getAllCharacters(
         @Query("page") page: Int
-    ): Single<Character>
+    ): Single<CharacterRs>
 
+}
+
+
+interface EpisodeService {
+
+    @GET(".")
+    fun getEpisode(): Single<EpisodeRs>
 }
