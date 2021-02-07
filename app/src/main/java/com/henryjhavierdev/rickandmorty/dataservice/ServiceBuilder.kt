@@ -1,6 +1,7 @@
-package com.henryjhavierdev.rickandmorty.config.network
+package com.henryjhavierdev.rickandmorty.dataservice
 
-import com.henryjhavierdev.rickandmorty.model.EpisodeRs
+import com.henryjhavierdev.rickandmorty.dataservice.network.CharacterService
+import com.henryjhavierdev.rickandmorty.dataservice.network.EpisodeService
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

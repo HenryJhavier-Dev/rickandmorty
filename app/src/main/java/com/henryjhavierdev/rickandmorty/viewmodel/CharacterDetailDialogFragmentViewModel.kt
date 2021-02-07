@@ -3,10 +3,10 @@ package com.henryjhavierdev.rickandmorty.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.henryjhavierdev.rickandmorty.config.network.EpisodeRequest
-import com.henryjhavierdev.rickandmorty.config.network.EpisodeService
-import com.henryjhavierdev.rickandmorty.config.network.toCharacterEntity
+import com.henryjhavierdev.rickandmorty.dataservice.network.EpisodeService
 import com.henryjhavierdev.rickandmorty.database.ICharacterDao
+import com.henryjhavierdev.rickandmorty.dataservice.EpisodeRequest
+import com.henryjhavierdev.rickandmorty.dataservice.toCharacterEntity
 import com.henryjhavierdev.rickandmorty.model.CharacterEntity
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.model.EpisodeRs

@@ -1,4 +1,4 @@
-package com.henryjhavierdev.rickandmorty.config.network
+package com.henryjhavierdev.rickandmorty.dataservice
 
 import com.henryjhavierdev.rickandmorty.model.*
 

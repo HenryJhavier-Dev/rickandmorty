@@ -1,6 +1,5 @@
 package com.henryjhavierdev.rickandmorty.ui.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +8,14 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.CharacterGridAdapter
 import com.henryjhavierdev.rickandmorty.adapters.CharacterListener
-import com.henryjhavierdev.rickandmorty.config.network.CharacterRequest
 import com.henryjhavierdev.rickandmorty.databinding.FragmentHomeBinding
+import com.henryjhavierdev.rickandmorty.dataservice.CharacterRequest
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.rickandmorty.utils.URL_BASE

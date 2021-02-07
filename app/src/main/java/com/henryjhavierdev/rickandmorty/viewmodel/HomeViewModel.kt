@@ -1,12 +1,13 @@
 package com.henryjhavierdev.rickandmorty.viewmodel
 
-import androidx.lifecycle.*
-import com.henryjhavierdev.rickandmorty.config.network.CharacterService
-
-import com.henryjhavierdev.rickandmorty.config.network.CharacterRequest
-import com.henryjhavierdev.rickandmorty.config.network.toCharacterServerList
-import com.henryjhavierdev.rickandmorty.model.CharacterRs
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.henryjhavierdev.rickandmorty.dataservice.CharacterRequest
+import com.henryjhavierdev.rickandmorty.dataservice.network.CharacterService
+import com.henryjhavierdev.rickandmorty.dataservice.toCharacterServerList
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
+import com.henryjhavierdev.rickandmorty.model.CharacterRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

@@ -1,9 +1,7 @@
 package com.henryjhavierdev.rickandmorty.ui.character
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -13,12 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.EpisodeListAdapter
-import com.henryjhavierdev.rickandmorty.config.network.EpisodeRequest
-import com.henryjhavierdev.rickandmorty.config.network.ServiceBuilder
 import com.henryjhavierdev.rickandmorty.database.CharacterDataBase
 import com.henryjhavierdev.rickandmorty.database.ICharacterDao
 import com.henryjhavierdev.rickandmorty.databinding.FragmentCharacterDetailBinding
-import com.henryjhavierdev.rickandmorty.databinding.FragmentHomeBinding
+import com.henryjhavierdev.rickandmorty.dataservice.EpisodeRequest
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.rickandmorty.utils.URL_BASE
@@ -27,7 +23,6 @@ import com.henryjhavierdev.rickandmorty.utils.getViewModel
 import com.henryjhavierdev.rickandmorty.utils.showLongToast
 import com.henryjhavierdev.rickandmorty.viewmodel.CharacterDetailDialogFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_character_detail.*
-import org.w3c.dom.CharacterData
 
 class CharacterDetailDialogFragment : DialogFragment() {
 
