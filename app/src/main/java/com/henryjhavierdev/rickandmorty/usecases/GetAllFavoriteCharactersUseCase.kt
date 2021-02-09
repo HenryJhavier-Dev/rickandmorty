@@ -1,5 +1,6 @@
 package com.henryjhavierdev.rickandmorty.usecases
 
+import com.henryjhavierdev.data.CharacterRepository
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.database.ICharacterDao
 import com.henryjhavierdev.rickandmorty.database.toCharacterDomain
@@ -9,12 +10,10 @@ import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 
 class GetAllFavoriteCharactersUseCase(
-    private val characterDao: ICharacterDao
+    private val characterRepository: CharacterRepository
 ) {
 
-    fun invoke(): Flowable<List<Character>> = characterDao
-        .getAllFavoriteCharacters()
-        .map(List<CharacterEntity>::toCharacterDomainList)
-        .onErrorReturn { emptyList() }
-        .subscribeOn(Schedulers.io())
+    fun invoke(): Flowable<List<Character>>{
+        return characterRepository.getAllFavoriteCharacters()
+    }
 }

@@ -10,6 +10,9 @@ buildscript {
         reactiveStreamsVersion = '2.2.0'
         nav_version = "2.3.2"
 
+        //Kotlin
+        kotlinLib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
         //Rx
         rxAndroidLib = "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
         rxJavaLib = "io.reactivex.rxjava2:rxjava:$rxJavaVersion"

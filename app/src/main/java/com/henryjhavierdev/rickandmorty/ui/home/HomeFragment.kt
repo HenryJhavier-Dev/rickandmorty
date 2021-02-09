@@ -11,11 +11,17 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.henryjhavierdev.data.CharacterRepository
+import com.henryjhavierdev.data.datasource.CharacterRemoteDataSource
+import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.CharacterGridAdapter
 import com.henryjhavierdev.rickandmorty.adapters.CharacterListener
+import com.henryjhavierdev.rickandmorty.database.CharacterDataBase
+import com.henryjhavierdev.rickandmorty.database.CharacterLocalDataSourceImpl
 import com.henryjhavierdev.rickandmorty.databinding.FragmentHomeBinding
+import com.henryjhavierdev.rickandmorty.dataservice.CharacterRemoteDataSourceImpl
 import com.henryjhavierdev.rickandmorty.dataservice.CharacterRequest
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
@@ -37,9 +43,26 @@ class HomeFragment : Fragment(), CharacterListener {
         CharacterRequest(URL_BASE)
     }
 
-    private val getAllCharactersUseCase: GetAllCharactersUseCase by lazy {
-        GetAllCharactersUseCase(characterRequest)
+    //region Repository
+    private val characterRemoteDataSource: CharacterRemoteDataSource by lazy {
+        CharacterRemoteDataSourceImpl(characterRequest)
     }
+
+    private val localCharacterDataSource: LocalCharacterDataSource by lazy {
+        CharacterLocalDataSourceImpl(
+            CharacterDataBase.getInstanceDataBase(requireActivity().applicationContext))
+    }
+
+    private val characterRepository: CharacterRepository by lazy {
+        CharacterRepository(characterRemoteDataSource, localCharacterDataSource)
+    }
+
+    private val getAllCharactersUseCase: GetAllCharactersUseCase by lazy {
+        GetAllCharactersUseCase(characterRepository)
+    }
+
+    //endregion
+
 
     private val homeViewModel: HomeViewModel by lazy {
         getViewModel { HomeViewModel(getAllCharactersUseCase) }

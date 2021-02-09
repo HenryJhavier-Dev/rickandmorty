@@ -10,17 +10,25 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.henryjhavierdev.data.CharacterRepository
+import com.henryjhavierdev.data.datasource.CharacterRemoteDataSource
+import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.FavoriteListAdapter
 import com.henryjhavierdev.rickandmorty.adapters.FavoriteListener
 import com.henryjhavierdev.rickandmorty.database.CharacterDataBase
+import com.henryjhavierdev.rickandmorty.database.CharacterLocalDataSourceImpl
 import com.henryjhavierdev.rickandmorty.database.ICharacterDao
 import com.henryjhavierdev.rickandmorty.database.toCharacterEntity
 import com.henryjhavierdev.rickandmorty.databinding.FragmentFavoriteBinding
+import com.henryjhavierdev.rickandmorty.dataservice.CharacterRemoteDataSourceImpl
+import com.henryjhavierdev.rickandmorty.dataservice.CharacterRequest
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
+import com.henryjhavierdev.rickandmorty.usecases.GetAllCharactersUseCase
 import com.henryjhavierdev.rickandmorty.usecases.GetAllFavoriteCharactersUseCase
+import com.henryjhavierdev.rickandmorty.utils.URL_BASE
 import com.henryjhavierdev.rickandmorty.utils.setItemDecorationSpacing
 import com.henryjhavierdev.rickandmorty.viewmodel.FavoriteViewModel
 import kotlinx.android.synthetic.main.fragment_favorite.*
@@ -31,12 +39,27 @@ class FavoriteFragment : Fragment(), FavoriteListener {
     private lateinit var binding: FragmentFavoriteBinding
     private lateinit var favoriteListAdapter: FavoriteListAdapter
 
-    private val characterDao: ICharacterDao by lazy {
-         CharacterDataBase.getInstanceDataBase(requireActivity().applicationContext).characterDao()
+    //region Repository
+    private val characterRequest: CharacterRequest by lazy {
+        CharacterRequest(URL_BASE)
+    }
+    private val characterRemoteDataSource: CharacterRemoteDataSource by lazy {
+        CharacterRemoteDataSourceImpl(characterRequest)
     }
 
+    private val localCharacterDataSource: LocalCharacterDataSource by lazy {
+        CharacterLocalDataSourceImpl(
+            CharacterDataBase.getInstanceDataBase(requireActivity().applicationContext))
+    }
+
+    private val characterRepository: CharacterRepository by lazy {
+        CharacterRepository(characterRemoteDataSource, localCharacterDataSource)
+    }
+
+    //endregion
+
     private val getAllFavoriteCharactersUseCase: GetAllFavoriteCharactersUseCase by lazy {
-        GetAllFavoriteCharactersUseCase(characterDao)
+        GetAllFavoriteCharactersUseCase(characterRepository)
     }
 
     private val favoriteViewModel: FavoriteViewModel by lazy {

@@ -9,14 +9,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import com.henryjhavierdev.data.CharacterRepository
+import com.henryjhavierdev.data.EpisodeRepository
+import com.henryjhavierdev.data.datasource.CharacterRemoteDataSource
+import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.EpisodeListAdapter
 import com.henryjhavierdev.rickandmorty.database.CharacterDataBase
+import com.henryjhavierdev.rickandmorty.database.CharacterLocalDataSourceImpl
 import com.henryjhavierdev.rickandmorty.database.ICharacterDao
 import com.henryjhavierdev.rickandmorty.databinding.FragmentCharacterDetailBinding
-import com.henryjhavierdev.rickandmorty.dataservice.EpisodeRequest
-import com.henryjhavierdev.rickandmorty.dataservice.toCharacterDomain
+import com.henryjhavierdev.rickandmorty.dataservice.*
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
 import com.henryjhavierdev.rickandmorty.usecases.GetFavoriteCharacterStatusUseCase
@@ -40,20 +44,44 @@ class CharacterDetailDialogFragment : DialogFragment() {
     private val episodeRequest: EpisodeRequest by lazy {
         EpisodeRequest(URL_BASE)
     }
-    private val characterDao: ICharacterDao by lazy {
-        CharacterDataBase.getInstanceDataBase(requireActivity().applicationContext).characterDao()
+
+    //region Repository
+    private val characterRequest: CharacterRequest by lazy {
+        CharacterRequest(URL_BASE)
+    }
+    private val characterRemoteDataSource: CharacterRemoteDataSource by lazy {
+        CharacterRemoteDataSourceImpl(characterRequest)
     }
 
+    private val episodeRemoteDataSource: EpisodeRemoteDataSourceImpl by lazy {
+        EpisodeRemoteDataSourceImpl(episodeRequest)
+    }
+
+
+    private val localCharacterDataSource: LocalCharacterDataSource by lazy {
+        CharacterLocalDataSourceImpl(
+            CharacterDataBase.getInstanceDataBase(requireActivity().applicationContext))
+    }
+
+    private val characterRepository: CharacterRepository by lazy {
+        CharacterRepository(characterRemoteDataSource, localCharacterDataSource)
+    }
+
+    private val episodeRepository: EpisodeRepository by lazy {
+        EpisodeRepository(episodeRemoteDataSource)
+    }
+
+    //endregion
     private val getFavoriteCharacterStatusUseCase: GetFavoriteCharacterStatusUseCase by lazy {
-        GetFavoriteCharacterStatusUseCase(characterDao)
+        GetFavoriteCharacterStatusUseCase(characterRepository)
     }
 
     private val updateFavoriteCharacterStatusUseCase: UpdateFavoriteCharacterStatusUseCase by lazy {
-        UpdateFavoriteCharacterStatusUseCase(characterDao)
+        UpdateFavoriteCharacterStatusUseCase(characterRepository)
     }
 
     private val getEpisodeFromCharacterUseCase: GetEpisodeFromCharacterUseCase by lazy {
-        GetEpisodeFromCharacterUseCase(episodeRequest)
+        GetEpisodeFromCharacterUseCase(episodeRepository)
     }
 
     private val characterDetailViewModel: CharacterDetailDialogFragmentViewModel by lazy {

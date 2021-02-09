@@ -1,4 +1,4 @@
-package com.henryjhavierdev.rickandmorty.dataservice.network
+package com.henryjhavierdev.rickandmorty.dataservice
 
 
 import com.henryjhavierdev.rickandmorty.model.CharacterRs

@@ -1,22 +1,15 @@
 package com.henryjhavierdev.rickandmorty.usecases
 
+import com.henryjhavierdev.data.CharacterRepository
 import com.henryjhavierdev.domain.Character
-import com.henryjhavierdev.rickandmorty.dataservice.CharacterRequest
-import com.henryjhavierdev.rickandmorty.dataservice.network.CharacterService
-import com.henryjhavierdev.rickandmorty.dataservice.toCharacterDomainList
-import com.henryjhavierdev.rickandmorty.model.CharacterRs
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 
 class GetAllCharactersUseCase(
-    private val characterRequest: CharacterRequest) {
+    private val characterRepository: CharacterRepository
+    ){
 
-    fun invoke(currentPage: Int): Single<List<Character>> = characterRequest
-        .getService<CharacterService>()
-        .getAllCharacters(currentPage)
-        .map(CharacterRs::toCharacterDomainList)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribeOn(Schedulers.io())
+    fun invoke(currentPage: Int): Single<List<Character>>{
+      return  characterRepository.getAllCharacters(currentPage)
+    }
 }
