@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.domain.Episode
 import com.henryjhavierdev.rickandmorty.presentation.Event
-import com.henryjhavierdev.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
-import com.henryjhavierdev.rickandmorty.usecases.GetFavoriteCharacterStatusUseCase
-import com.henryjhavierdev.rickandmorty.usecases.UpdateFavoriteCharacterStatusUseCase
+import com.henryjhavierdev.usecases.GetEpisodeFromCharacterUseCase
+import com.henryjhavierdev.usecases.GetFavoriteCharacterStatusUseCase
+import com.henryjhavierdev.usecases.UpdateFavoriteCharacterStatusUseCase
 import io.reactivex.disposables.CompositeDisposable
 
 class CharacterDetailDialogFragmentViewModel(

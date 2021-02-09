@@ -1,4 +1,4 @@
-package com.henryjhavierdev.rickandmorty.usecases
+package com.henryjhavierdev.usecases
 
 import com.henryjhavierdev.data.EpisodeRepository
 import com.henryjhavierdev.domain.Episode

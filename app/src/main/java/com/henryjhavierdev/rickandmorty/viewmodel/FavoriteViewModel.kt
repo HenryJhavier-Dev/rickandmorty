@@ -7,13 +7,9 @@ import androidx.lifecycle.ViewModel
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.viewmodel.FavoriteViewModel.FavoriteListNavigation.ShowCharacterList
 import com.henryjhavierdev.rickandmorty.viewmodel.FavoriteViewModel.FavoriteListNavigation.ShowEmptyListMessage
-import com.henryjhavierdev.rickandmorty.database.ICharacterDao
-import com.henryjhavierdev.rickandmorty.model.CharacterEntity
 import com.henryjhavierdev.rickandmorty.presentation.Event
-import com.henryjhavierdev.rickandmorty.usecases.GetAllFavoriteCharactersUseCase
+import com.henryjhavierdev.usecases.GetAllFavoriteCharactersUseCase
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteViewModel(
     private  val getAllFavoriteCharactersUseCase: GetAllFavoriteCharactersUseCase

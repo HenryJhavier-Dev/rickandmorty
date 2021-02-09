@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
-import com.henryjhavierdev.rickandmorty.usecases.GetAllCharactersUseCase
+import com.henryjhavierdev.usecases.GetAllCharactersUseCase
 import io.reactivex.disposables.CompositeDisposable
 
 //Los casos de uso son los que manejan la logica

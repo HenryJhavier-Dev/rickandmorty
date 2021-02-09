@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.data.CharacterRepository
 import com.henryjhavierdev.data.datasource.CharacterRemoteDataSource
 import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
-import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.CharacterGridAdapter
 import com.henryjhavierdev.rickandmorty.adapters.CharacterListener
@@ -25,7 +24,7 @@ import com.henryjhavierdev.rickandmorty.dataservice.CharacterRemoteDataSourceImp
 import com.henryjhavierdev.rickandmorty.dataservice.CharacterRequest
 import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
-import com.henryjhavierdev.rickandmorty.usecases.GetAllCharactersUseCase
+import com.henryjhavierdev.usecases.GetAllCharactersUseCase
 import com.henryjhavierdev.rickandmorty.utils.URL_BASE
 import com.henryjhavierdev.rickandmorty.utils.getViewModel
 import com.henryjhavierdev.rickandmorty.utils.setItemDecorationSpacing

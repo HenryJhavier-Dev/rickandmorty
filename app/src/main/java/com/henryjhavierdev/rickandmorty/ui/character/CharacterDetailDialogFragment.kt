@@ -18,13 +18,12 @@ import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.EpisodeListAdapter
 import com.henryjhavierdev.rickandmorty.database.CharacterDataBase
 import com.henryjhavierdev.rickandmorty.database.CharacterLocalDataSourceImpl
-import com.henryjhavierdev.rickandmorty.database.ICharacterDao
 import com.henryjhavierdev.rickandmorty.databinding.FragmentCharacterDetailBinding
 import com.henryjhavierdev.rickandmorty.dataservice.*
 import com.henryjhavierdev.rickandmorty.presentation.Event
-import com.henryjhavierdev.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
-import com.henryjhavierdev.rickandmorty.usecases.GetFavoriteCharacterStatusUseCase
-import com.henryjhavierdev.rickandmorty.usecases.UpdateFavoriteCharacterStatusUseCase
+import com.henryjhavierdev.usecases.GetEpisodeFromCharacterUseCase
+import com.henryjhavierdev.usecases.GetFavoriteCharacterStatusUseCase
+import com.henryjhavierdev.usecases.UpdateFavoriteCharacterStatusUseCase
 import com.henryjhavierdev.rickandmorty.utils.URL_BASE
 import com.henryjhavierdev.rickandmorty.utils.bindCircularImageUrl
 import com.henryjhavierdev.rickandmorty.utils.getViewModel
