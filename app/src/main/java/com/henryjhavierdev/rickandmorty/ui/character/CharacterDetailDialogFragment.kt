@@ -14,6 +14,7 @@ import com.henryjhavierdev.data.EpisodeRepository
 import com.henryjhavierdev.data.datasource.CharacterRemoteDataSource
 import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
 import com.henryjhavierdev.domain.Character
+import com.henryjhavierdev.imagemanager.bindCircularImageUrl
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.EpisodeListAdapter
 import com.henryjhavierdev.rickandmorty.database.CharacterDataBase
@@ -25,7 +26,6 @@ import com.henryjhavierdev.usecases.GetEpisodeFromCharacterUseCase
 import com.henryjhavierdev.usecases.GetFavoriteCharacterStatusUseCase
 import com.henryjhavierdev.usecases.UpdateFavoriteCharacterStatusUseCase
 import com.henryjhavierdev.rickandmorty.utils.URL_BASE
-import com.henryjhavierdev.rickandmorty.utils.bindCircularImageUrl
 import com.henryjhavierdev.rickandmorty.utils.getViewModel
 import com.henryjhavierdev.rickandmorty.utils.showLongToast
 import com.henryjhavierdev.rickandmorty.viewmodel.CharacterDetailDialogFragmentViewModel

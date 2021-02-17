@@ -4,9 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.domain.Character
+import com.henryjhavierdev.imagemanager.bindImageUrl
 import com.henryjhavierdev.rickandmorty.parcelable.toCharacterResultRs
 import com.henryjhavierdev.rickandmorty.databinding.ItemFavoriteCharacterBinding
-import com.henryjhavierdev.rickandmorty.utils.bindImageUrl
 import com.henryjhavierdev.rickandmorty.utils.bindingInflate
 import kotlinx.android.synthetic.main.item_favorite_character.view.*
 

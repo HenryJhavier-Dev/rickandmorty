@@ -2,15 +2,16 @@ package com.henryjhavierdev.rickandmorty.adapters
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.henryjhavierdev.imagemanager.bindImageUrl
+import com.henryjhavierdev.rickandmorty.R
+
 
 @BindingAdapter("imageFromUrl")
 fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
-    if (!imageUrl.isNullOrEmpty()) {
-        Glide.with(view.context)
-                .load(imageUrl)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(view)
-    }
+        view.bindImageUrl(
+            url = imageUrl,
+            placeholder = R.drawable.ic_camera_alt_black,
+            errorPlaceholder = R.drawable.ic_broken_image_black
+        )
 }
+
