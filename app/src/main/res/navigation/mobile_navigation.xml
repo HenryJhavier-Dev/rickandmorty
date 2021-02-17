@@ -34,7 +34,7 @@
         tools:layout="@layout/fragment_character_detail">
         <argument
             android:name="character"
-            app:argType="com.henryjhavierdev.rickandmorty.model.CharacterResultRs"/>
+            app:argType="com.henryjhavierdev.rickandmorty.parcelables.CharacterResultRs"/>
     </dialog>
 
 

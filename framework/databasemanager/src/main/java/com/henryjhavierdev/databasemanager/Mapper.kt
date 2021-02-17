@@ -1,9 +1,8 @@
-package com.henryjhavierdev.rickandmorty.database
+package com.henryjhavierdev.databasemanager
 
+import com.henryjhavierdev.domain.Origin
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.domain.Location
-import com.henryjhavierdev.domain.Origin
-import com.henryjhavierdev.rickandmorty.model.*
 
 fun List<CharacterEntity>.toCharacterDomainList() = map(CharacterEntity:: toCharacterDomain)
 

@@ -1,4 +1,4 @@
-package com.henryjhavierdev.rickandmorty.database
+package com.henryjhavierdev.databasemanager
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
@@ -6,6 +6,12 @@ import com.google.gson.reflect.TypeToken
 import java.util.*
 
 class ListStringConverters {
+
+    //Transforma a un tipo que puede manejar la BD
+    //En este caso para guardar la lista de episodios que es devuelto del api como una
+    //lista de strings
+
+
     //region Fields
 
     private val gson: Gson = Gson()

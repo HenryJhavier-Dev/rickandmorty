@@ -17,8 +17,8 @@ import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.imagemanager.bindCircularImageUrl
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.EpisodeListAdapter
-import com.henryjhavierdev.rickandmorty.database.CharacterDataBase
-import com.henryjhavierdev.rickandmorty.database.CharacterLocalDataSourceImpl
+import com.henryjhavierdev.databasemanager.CharacterDataBase
+import com.henryjhavierdev.databasemanager.CharacterLocalDataSourceImpl
 import com.henryjhavierdev.rickandmorty.databinding.FragmentCharacterDetailBinding
 import com.henryjhavierdev.rickandmorty.dataservice.*
 import com.henryjhavierdev.rickandmorty.presentation.Event

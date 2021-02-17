@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/framework" />
+            <option value="$PROJECT_DIR$/framework/databasemanager" />
             <option value="$PROJECT_DIR$/framework/imagemanager" />
             <option value="$PROJECT_DIR$/usecases" />
           </set>

@@ -1,8 +1,7 @@
-package com.henryjhavierdev.rickandmorty.database
+package com.henryjhavierdev.databasemanager
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.henryjhavierdev.rickandmorty.model.CharacterEntity
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 

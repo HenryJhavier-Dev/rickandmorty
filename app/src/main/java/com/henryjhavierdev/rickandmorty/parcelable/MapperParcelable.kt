@@ -3,9 +3,9 @@ package com.henryjhavierdev.rickandmorty.parcelable
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.domain.Location
 import com.henryjhavierdev.domain.Origin
-import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
-import com.henryjhavierdev.rickandmorty.model.LocationRs
-import com.henryjhavierdev.rickandmorty.model.OriginRs
+import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultRs
+import com.henryjhavierdev.rickandmorty.parcelables.LocationRs
+import com.henryjhavierdev.rickandmorty.parcelables.OriginRs
 
 
 fun Character.toCharacterResultRs() = CharacterResultRs(

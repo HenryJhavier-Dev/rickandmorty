@@ -1,12 +1,11 @@
-package com.henryjhavierdev.rickandmorty.database
+package com.henryjhavierdev.databasemanager
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.henryjhavierdev.rickandmorty.model.CharacterEntity
-import com.henryjhavierdev.rickandmorty.utils.DATABASE_NAME
+import com.henryjhavierdev.databasemanager.utils.DATABASE_NAME
 
 @Database(entities = [CharacterEntity::class], version = 2)
 @TypeConverters(ListStringConverters::class)

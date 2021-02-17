@@ -1,12 +1,10 @@
 package com.henryjhavierdev.rickandmorty.dataservice
 
-import com.henryjhavierdev.rickandmorty.model.*
+import com.henryjhavierdev.rickandmorty.parcelables.*
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.domain.Episode
 import com.henryjhavierdev.domain.Location
 import com.henryjhavierdev.domain.Origin
-import com.henryjhavierdev.rickandmorty.database.toLocationDomain
-import com.henryjhavierdev.rickandmorty.database.toOriginDomain
 
 fun CharacterRs.toCharacterDomainList(): List<Character> = results.map {
     it.run{

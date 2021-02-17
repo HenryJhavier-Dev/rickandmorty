@@ -1,8 +1,8 @@
 package com.henryjhavierdev.rickandmorty.dataservice
 
 
-import com.henryjhavierdev.rickandmorty.model.CharacterRs
-import com.henryjhavierdev.rickandmorty.model.EpisodeRs
+import com.henryjhavierdev.rickandmorty.parcelables.CharacterRs
+import com.henryjhavierdev.rickandmorty.parcelables.EpisodeRs
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

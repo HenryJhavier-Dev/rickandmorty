@@ -1,8 +1,7 @@
-package com.henryjhavierdev.rickandmorty.database
+package com.henryjhavierdev.databasemanager
 
 import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
 import com.henryjhavierdev.domain.Character
-import com.henryjhavierdev.rickandmorty.model.CharacterEntity
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers

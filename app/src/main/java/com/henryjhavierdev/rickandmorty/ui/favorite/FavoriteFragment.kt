@@ -16,12 +16,12 @@ import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.FavoriteListAdapter
 import com.henryjhavierdev.rickandmorty.adapters.FavoriteListener
-import com.henryjhavierdev.rickandmorty.database.CharacterDataBase
-import com.henryjhavierdev.rickandmorty.database.CharacterLocalDataSourceImpl
+import com.henryjhavierdev.databasemanager.CharacterDataBase
+import com.henryjhavierdev.databasemanager.CharacterLocalDataSourceImpl
 import com.henryjhavierdev.rickandmorty.databinding.FragmentFavoriteBinding
 import com.henryjhavierdev.rickandmorty.dataservice.CharacterRemoteDataSourceImpl
 import com.henryjhavierdev.rickandmorty.dataservice.CharacterRequest
-import com.henryjhavierdev.rickandmorty.model.CharacterResultRs
+import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultRs
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.usecases.GetAllFavoriteCharactersUseCase
 import com.henryjhavierdev.rickandmorty.utils.URL_BASE

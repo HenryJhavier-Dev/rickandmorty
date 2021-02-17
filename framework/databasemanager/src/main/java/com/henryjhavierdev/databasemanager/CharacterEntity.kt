@@ -1,4 +1,4 @@
-package com.henryjhavierdev.rickandmorty.model
+package com.henryjhavierdev.databasemanager
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
