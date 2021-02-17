@@ -19,8 +19,12 @@ import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.EpisodeListAdapter
 import com.henryjhavierdev.databasemanager.CharacterDataBase
 import com.henryjhavierdev.databasemanager.CharacterLocalDataSourceImpl
+import com.henryjhavierdev.requestmanager.CharacterRemoteDataSourceImpl
+import com.henryjhavierdev.requestmanager.CharacterRequest
+import com.henryjhavierdev.requestmanager.EpisodeRemoteDataSourceImpl
+import com.henryjhavierdev.requestmanager.EpisodeRequest
 import com.henryjhavierdev.rickandmorty.databinding.FragmentCharacterDetailBinding
-import com.henryjhavierdev.rickandmorty.dataservice.*
+import com.henryjhavierdev.rickandmorty.parcelables.toCharacterDomain
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.usecases.GetEpisodeFromCharacterUseCase
 import com.henryjhavierdev.usecases.GetFavoriteCharacterStatusUseCase

@@ -1,10 +1,10 @@
-package com.henryjhavierdev.rickandmorty.dataservice
+package com.henryjhavierdev.requestmanager
 
-import com.henryjhavierdev.rickandmorty.parcelables.*
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.domain.Episode
 import com.henryjhavierdev.domain.Location
 import com.henryjhavierdev.domain.Origin
+
 
 fun CharacterRs.toCharacterDomainList(): List<Character> = results.map {
     it.run{
@@ -22,20 +22,6 @@ fun CharacterRs.toCharacterDomainList(): List<Character> = results.map {
     }
 }
 
-fun CharacterResultRs.toCharacterDomain(): Character =
-        Character(
-            id,
-            name,
-            image,
-            gender,
-            species,
-            status,
-            origin?.toOriginDomain(),
-            location?.toLocationDomain(),
-            episodeList?.map { episode -> "$episode/" } ?: emptyList()
-        )
-
-
 fun OriginRs.toOriginDomain() = Origin(
     name ?: "",
     url ?: ""
@@ -50,6 +36,7 @@ fun EpisodeRs.toEpisodeDomain() = Episode(
     id_episode,
     name_episode
 )
+
 
 
 

@@ -1,7 +1,7 @@
 package com.henryjhavierdev.rickandmorty.adapters
 
-import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultRs
+import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultParcelable
 
 interface CharacterListener {
-    fun openCharacterDetail(character: CharacterResultRs)
+    fun openCharacterDetail(character: CharacterResultParcelable)
 }

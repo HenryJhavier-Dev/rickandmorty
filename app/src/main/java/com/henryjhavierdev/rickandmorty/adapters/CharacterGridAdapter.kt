@@ -5,7 +5,7 @@ import com.henryjhavierdev.domain.Character
 import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.databinding.ViewGridCharacterItemBinding
-import com.henryjhavierdev.rickandmorty.parcelable.toCharacterResultRs
+import com.henryjhavierdev.rickandmorty.parcelables.toCharacterResultParcelable
 import com.henryjhavierdev.rickandmorty.utils.bindingInflate
 
 class CharacterGridAdapter(
@@ -44,7 +44,7 @@ class CharacterGridAdapter(
 
             dataBinding.character = item
             itemView.setOnClickListener {
-                listener.openCharacterDetail(item.toCharacterResultRs())
+                listener.openCharacterDetail(item.toCharacterResultParcelable())
             }
         }
 

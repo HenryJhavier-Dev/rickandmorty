@@ -1,7 +1,8 @@
 package com.henryjhavierdev.rickandmorty.adapters
 
-import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultRs
+import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultParcelable
+
 
 interface FavoriteListener {
-    fun onFavoriteListener(character: CharacterResultRs)
+    fun onFavoriteListener(character: CharacterResultParcelable)
 }

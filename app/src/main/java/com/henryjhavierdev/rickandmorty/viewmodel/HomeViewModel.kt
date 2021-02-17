@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.henryjhavierdev.domain.Character
-import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultRs
+import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultParcelable
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.usecases.GetAllCharactersUseCase
 import io.reactivex.disposables.CompositeDisposable
@@ -94,8 +94,8 @@ class HomeViewModel(
         object ShowLoading : CharacterListNavigation()
     }
 
-    private var _characters = MutableLiveData<CharacterResultRs>()
-    val characters: LiveData<CharacterResultRs>
+    private var _characters = MutableLiveData<CharacterResultParcelable>()
+    val characters: LiveData<CharacterResultParcelable>
         get() = _characters
 
 

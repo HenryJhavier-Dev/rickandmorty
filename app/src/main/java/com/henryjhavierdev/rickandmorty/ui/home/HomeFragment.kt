@@ -14,22 +14,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.data.CharacterRepository
 import com.henryjhavierdev.data.datasource.CharacterRemoteDataSource
 import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
+import com.henryjhavierdev.databasemanager.CharacterDataBase
+import com.henryjhavierdev.databasemanager.CharacterLocalDataSourceImpl
+import com.henryjhavierdev.requestmanager.CharacterRemoteDataSourceImpl
+import com.henryjhavierdev.requestmanager.CharacterRequest
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.CharacterGridAdapter
 import com.henryjhavierdev.rickandmorty.adapters.CharacterListener
-import com.henryjhavierdev.databasemanager.CharacterDataBase
-import com.henryjhavierdev.databasemanager.CharacterLocalDataSourceImpl
 import com.henryjhavierdev.rickandmorty.databinding.FragmentHomeBinding
-import com.henryjhavierdev.rickandmorty.dataservice.CharacterRemoteDataSourceImpl
-import com.henryjhavierdev.rickandmorty.dataservice.CharacterRequest
-import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultRs
+import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultParcelable
 import com.henryjhavierdev.rickandmorty.presentation.Event
-import com.henryjhavierdev.usecases.GetAllCharactersUseCase
 import com.henryjhavierdev.rickandmorty.utils.URL_BASE
 import com.henryjhavierdev.rickandmorty.utils.getViewModel
 import com.henryjhavierdev.rickandmorty.utils.setItemDecorationSpacing
 import com.henryjhavierdev.rickandmorty.utils.showLongToast
 import com.henryjhavierdev.rickandmorty.viewmodel.HomeViewModel
+import com.henryjhavierdev.usecases.GetAllCharactersUseCase
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), CharacterListener {
@@ -137,7 +137,7 @@ class HomeFragment : Fragment(), CharacterListener {
     }
 
 
-    override fun openCharacterDetail(character: CharacterResultRs) {
+    override fun openCharacterDetail(character: CharacterResultParcelable) {
         val bundle = bundleOf("character" to character)
         findNavController().navigate(R.id.characterDetailFragment,bundle)    }
 

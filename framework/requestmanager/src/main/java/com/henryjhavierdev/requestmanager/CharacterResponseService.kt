@@ -1,4 +1,4 @@
-package com.henryjhavierdev.rickandmorty.parcelables
+package com.henryjhavierdev.requestmanager
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.imagemanager.bindImageUrl
-import com.henryjhavierdev.rickandmorty.parcelable.toCharacterResultRs
 import com.henryjhavierdev.rickandmorty.databinding.ItemFavoriteCharacterBinding
+import com.henryjhavierdev.rickandmorty.parcelables.toCharacterResultParcelable
 import com.henryjhavierdev.rickandmorty.utils.bindingInflate
 import kotlinx.android.synthetic.main.item_favorite_character.view.*
 
@@ -50,7 +50,7 @@ class FavoriteListAdapter(
                 errorPlaceholder = R.drawable.ic_broken_image_black
             )
             itemView.setOnClickListener {
-                listener.onFavoriteListener(item.toCharacterResultRs())
+                listener.onFavoriteListener(item.toCharacterResultParcelable())
             }
         }
 

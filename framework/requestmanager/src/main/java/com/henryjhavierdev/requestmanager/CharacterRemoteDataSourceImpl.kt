@@ -1,11 +1,9 @@
-package com.henryjhavierdev.rickandmorty.dataservice
+package com.henryjhavierdev.requestmanager
 
 import com.henryjhavierdev.data.datasource.CharacterRemoteDataSource
 import com.henryjhavierdev.data.datasource.EpisodeRemoteDataSource
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.domain.Episode
-import com.henryjhavierdev.rickandmorty.parcelables.CharacterRs
-import com.henryjhavierdev.rickandmorty.parcelables.EpisodeRs
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
