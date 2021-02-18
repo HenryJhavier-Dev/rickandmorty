@@ -24,4 +24,6 @@
     <string name="gender_format">Gender: %s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="henry_rojas">Henry Rojas</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lorem quam, laoreet scelerisque egestas ornare Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lorem quam, laoreet scelerisque egestas ornare</string>
 </resources>

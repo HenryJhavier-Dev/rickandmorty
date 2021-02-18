@@ -9,6 +9,8 @@ buildscript {
         gsonVersion = '2.8.6'
         reactiveStreamsVersion = '2.2.0'
         nav_version = "2.3.2"
+        dagger_version = '2.28'
+
 
         //Kotlin
         kotlinLib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -24,6 +26,9 @@ buildscript {
         //Gson
         gsonLib = "com.google.code.gson:gson:$gsonVersion"
 
+        //Dagger
+        daggerCompiler = "com.google.dagger:dagger-compiler:$dagger_version"
+        daggerLib = "com.google.dagger:dagger:$dagger_version"
 
     }
 

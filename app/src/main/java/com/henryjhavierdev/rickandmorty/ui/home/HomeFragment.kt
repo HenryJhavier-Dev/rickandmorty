@@ -11,25 +11,19 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.henryjhavierdev.data.CharacterRepository
-import com.henryjhavierdev.data.datasource.CharacterRemoteDataSource
-import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
-import com.henryjhavierdev.databasemanager.CharacterDataBase
-import com.henryjhavierdev.databasemanager.CharacterLocalDataSourceImpl
-import com.henryjhavierdev.requestmanager.CharacterRemoteDataSourceImpl
-import com.henryjhavierdev.requestmanager.CharacterRequest
+import com.henryjhavierdev.rickandmorty.MainApplication
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.CharacterGridAdapter
 import com.henryjhavierdev.rickandmorty.adapters.CharacterListener
 import com.henryjhavierdev.rickandmorty.databinding.FragmentHomeBinding
+import com.henryjhavierdev.rickandmorty.di.CharacterListComponent
+import com.henryjhavierdev.rickandmorty.di.CharacterListModule
 import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultParcelable
 import com.henryjhavierdev.rickandmorty.presentation.Event
-import com.henryjhavierdev.rickandmorty.utils.URL_BASE
 import com.henryjhavierdev.rickandmorty.utils.getViewModel
 import com.henryjhavierdev.rickandmorty.utils.setItemDecorationSpacing
 import com.henryjhavierdev.rickandmorty.utils.showLongToast
 import com.henryjhavierdev.rickandmorty.viewmodel.HomeViewModel
-import com.henryjhavierdev.usecases.GetAllCharactersUseCase
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), CharacterListener {
@@ -38,35 +32,20 @@ class HomeFragment : Fragment(), CharacterListener {
 
     private lateinit var characterGridAdapter: CharacterGridAdapter
 
-    private val characterRequest: CharacterRequest by lazy {
-        CharacterRequest(URL_BASE)
-    }
-
-    //region Repository
-    private val characterRemoteDataSource: CharacterRemoteDataSource by lazy {
-        CharacterRemoteDataSourceImpl(characterRequest)
-    }
-
-    private val localCharacterDataSource: LocalCharacterDataSource by lazy {
-        CharacterLocalDataSourceImpl(
-            CharacterDataBase.getInstanceDataBase(requireActivity().applicationContext))
-    }
-
-    private val characterRepository: CharacterRepository by lazy {
-        CharacterRepository(characterRemoteDataSource, localCharacterDataSource)
-    }
-
-    private val getAllCharactersUseCase: GetAllCharactersUseCase by lazy {
-        GetAllCharactersUseCase(characterRepository)
-    }
-
-    //endregion
-
+    private lateinit var characterListComponent: CharacterListComponent
 
     private val homeViewModel: HomeViewModel by lazy {
-        getViewModel { HomeViewModel(getAllCharactersUseCase) }
+        getViewModel { characterListComponent.characterListViewModel}
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val context = context?.applicationContext as MainApplication
+        
+        characterListComponent = context.component.inject(CharacterListModule())
+
+    }
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState:
         Bundle?): View? {
 

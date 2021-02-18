@@ -23,7 +23,10 @@ import com.henryjhavierdev.requestmanager.CharacterRemoteDataSourceImpl
 import com.henryjhavierdev.requestmanager.CharacterRequest
 import com.henryjhavierdev.requestmanager.EpisodeRemoteDataSourceImpl
 import com.henryjhavierdev.requestmanager.EpisodeRequest
+import com.henryjhavierdev.rickandmorty.MainApplication
 import com.henryjhavierdev.rickandmorty.databinding.FragmentCharacterDetailBinding
+import com.henryjhavierdev.rickandmorty.di.CharacterDetailComponent
+import com.henryjhavierdev.rickandmorty.di.CharacterDetailModule
 import com.henryjhavierdev.rickandmorty.parcelables.toCharacterDomain
 import com.henryjhavierdev.rickandmorty.presentation.Event
 import com.henryjhavierdev.usecases.GetEpisodeFromCharacterUseCase
@@ -41,69 +44,24 @@ class CharacterDetailDialogFragment : DialogFragment() {
 
     private lateinit var episodeListAdapter: EpisodeListAdapter
     private lateinit var binding: FragmentCharacterDetailBinding
-
-    //region Fields
-
-    private val episodeRequest: EpisodeRequest by lazy {
-        EpisodeRequest(URL_BASE)
-    }
-
-    //region Repository
-    private val characterRequest: CharacterRequest by lazy {
-        CharacterRequest(URL_BASE)
-    }
-    private val characterRemoteDataSource: CharacterRemoteDataSource by lazy {
-        CharacterRemoteDataSourceImpl(characterRequest)
-    }
-
-    private val episodeRemoteDataSource: EpisodeRemoteDataSourceImpl by lazy {
-        EpisodeRemoteDataSourceImpl(episodeRequest)
-    }
-
-
-    private val localCharacterDataSource: LocalCharacterDataSource by lazy {
-        CharacterLocalDataSourceImpl(
-            CharacterDataBase.getInstanceDataBase(requireActivity().applicationContext))
-    }
-
-    private val characterRepository: CharacterRepository by lazy {
-        CharacterRepository(characterRemoteDataSource, localCharacterDataSource)
-    }
-
-    private val episodeRepository: EpisodeRepository by lazy {
-        EpisodeRepository(episodeRemoteDataSource)
-    }
-
-    //endregion
-    private val getFavoriteCharacterStatusUseCase: GetFavoriteCharacterStatusUseCase by lazy {
-        GetFavoriteCharacterStatusUseCase(characterRepository)
-    }
-
-    private val updateFavoriteCharacterStatusUseCase: UpdateFavoriteCharacterStatusUseCase by lazy {
-        UpdateFavoriteCharacterStatusUseCase(characterRepository)
-    }
-
-    private val getEpisodeFromCharacterUseCase: GetEpisodeFromCharacterUseCase by lazy {
-        GetEpisodeFromCharacterUseCase(episodeRepository)
-    }
+    private lateinit var characterDetailComponent: CharacterDetailComponent
 
     private val characterDetailViewModel: CharacterDetailDialogFragmentViewModel by lazy {
-        getViewModel {
-            CharacterDetailDialogFragmentViewModel(
-                args.character.toCharacterDomain(),
-                getEpisodeFromCharacterUseCase,
-                getFavoriteCharacterStatusUseCase,
-                updateFavoriteCharacterStatusUseCase
-            )
-        }
+        getViewModel { characterDetailComponent.characterDetailViewModel }
     }
-
-    //endregion
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.FullScreenDialogStyle)
+
+        val context = context?.applicationContext as MainApplication
+
+        characterDetailComponent = context.component.inject(
+            CharacterDetailModule(args.character.toCharacterDomain())
+        )
+
+
     }
 
     override fun onStart() {

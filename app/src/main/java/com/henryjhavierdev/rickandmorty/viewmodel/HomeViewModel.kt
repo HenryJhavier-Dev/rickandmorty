@@ -1,5 +1,6 @@
 package com.henryjhavierdev.rickandmorty.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,8 +32,10 @@ class HomeViewModel(
     }
     //region Private Methods
 
-    fun onLoadMoreItems(visibleItemCount: Int, firstVisibleItemPosition: Int, totalItemCount: Int) {
-        if (isLoading || isLastPage || !isInFooter(visibleItemCount, firstVisibleItemPosition, totalItemCount)) {
+    fun onLoadMoreItems(visibleItemCount: Int, firstVisibleItemPosition: Int,
+                        totalItemCount: Int) {
+        if (isLoading || isLastPage ||
+            !isInFooter(visibleItemCount, firstVisibleItemPosition, totalItemCount)) {
             return
         }
 
@@ -53,10 +56,11 @@ class HomeViewModel(
 
 
     fun onGetAllCharacters() {
-
+        Log.i("HomeVM","currentPage $currentPage")
         disposable.add(
-            getAllCharactersUseCase.invoke(currentPage)
-                        .doOnSubscribe {
+            getAllCharactersUseCase
+                .invoke(currentPage)
+                .doOnSubscribe {
                             isLoading = true
                             _events.value = Event(CharacterListNavigation.ShowLoading)
                         }
@@ -64,6 +68,7 @@ class HomeViewModel(
                             if (characterList.size < PAGE_SIZE) {
                                 isLastPage = true
                             }
+                            isLoading = false
                             _events.value = Event(CharacterListNavigation.HideLoading)
                             _events.value = Event(CharacterListNavigation.ShowCharacterList(characterList))
                         },
@@ -76,7 +81,7 @@ class HomeViewModel(
         )
     }
 
-    fun isInFooter(
+    private fun isInFooter(
         visibleItemCount: Int,
         firstVisibleItemPosition: Int,
         totalItemCount: Int

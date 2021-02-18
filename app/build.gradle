@@ -89,6 +89,8 @@ dependencies {
 
     implementation reactiveStreamsLib
 
-
+    //Dagger
+    implementation daggerLib
+    kapt daggerCompiler
 
 }

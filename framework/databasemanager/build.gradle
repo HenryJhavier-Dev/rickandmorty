@@ -43,6 +43,10 @@ dependencies {
 
     implementation kotlinLib
 
+    //Dagger
+    implementation daggerLib
+    kapt daggerCompiler
+
     //Gson
     implementation gsonLib
 
