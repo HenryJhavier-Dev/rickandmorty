@@ -18,12 +18,19 @@
     -->
 
     <string name="quote_format">\"%s\"</string>
-    <string name="name_format">Name: %s</string>
+    <string name="name_format">Name:\n %s</string>
     <string name="status_format">Status: %s</string>
-    <string name="species_format">Species: %s</string>
+    <string name="species_format">Species:\n %s</string>
     <string name="gender_format">Gender: %s</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="henry_rojas">Henry Rojas</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lorem quam, laoreet scelerisque egestas ornare Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lorem quam, laoreet scelerisque egestas ornare</string>
+    <string name="dont_have_a_favorite">You don\'t have a favorite yet</string>
+    <string name="origin">Origin</string>
+    <string name="location">Location</string>
+    <string name="status">Status</string>
+    <string name="species">Species</string>
+    <string name="gender">Gender</string>
+    <string name="list_of_episodes">List of episodes</string>
 </resources>

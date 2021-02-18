@@ -2,13 +2,13 @@ package com.henryjhavierdev.rickandmorty.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.imagemanager.bindImageUrl
-import com.henryjhavierdev.rickandmorty.databinding.ItemFavoriteCharacterBinding
+import com.henryjhavierdev.rickandmorty.R
+import com.henryjhavierdev.rickandmorty.databinding.ViewFavoriteCharacterItemBinding
 import com.henryjhavierdev.rickandmorty.parcelables.toCharacterResultParcelable
 import com.henryjhavierdev.rickandmorty.utils.bindingInflate
-import kotlinx.android.synthetic.main.item_favorite_character.view.*
+import kotlinx.android.synthetic.main.view_favorite_character_item.view.*
 
 class FavoriteListAdapter(
     private val listener: FavoriteListener
@@ -24,7 +24,7 @@ class FavoriteListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         FavoriteListViewHolder(
-            parent.bindingInflate(R.layout.item_favorite_character, false),
+            parent.bindingInflate(R.layout.view_favorite_character_item, false),
             listener
         )
 
@@ -37,14 +37,14 @@ class FavoriteListAdapter(
     }
 
     class FavoriteListViewHolder(
-        private val dataBinding: ItemFavoriteCharacterBinding,
+        private val dataBinding: ViewFavoriteCharacterItemBinding,
         private val listener: FavoriteListener
     ): RecyclerView.ViewHolder(dataBinding.root) {
 
 
         fun bind(item: Character){
             dataBinding.character = item
-            itemView.character_image.bindImageUrl(
+            itemView.iv_favorite_character.bindImageUrl(
                 url = item.image,
                 placeholder = R.drawable.ic_camera_alt_black,
                 errorPlaceholder = R.drawable.ic_broken_image_black

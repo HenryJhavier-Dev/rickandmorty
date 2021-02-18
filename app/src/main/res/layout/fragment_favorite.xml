@@ -7,22 +7,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/pageBaseColor"
         tools:context=".ui.MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_margin="@dimen/card_view_margin"
             android:id="@+id/rvFavoriteList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/view_grid_character_item"
-            tools:itemCount="6"/>
+            tools:listitem="@layout/view_favorite_character_item"/>
 
         <TextView
             android:id="@+id/tvEmptyListMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="error no available data"
+            android:text="@string/dont_have_a_favorite"
             android:textSize="20sp"
             android:textStyle="bold"
             android:visibility="gone"

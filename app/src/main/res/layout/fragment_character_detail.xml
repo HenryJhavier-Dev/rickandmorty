@@ -44,7 +44,7 @@
             android:id="@+id/parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/black_overlay">
+            android:background="@color/pageBaseColor">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                tools:src="@drawable/ic_camera_alt_black" />
+                                tools:src="@tools:sample/avatars" />
 
                             <TextView
                                 android:id="@+id/characterName"
@@ -96,7 +96,7 @@
                             <TextView
                                 android:id="@+id/characterStatusLabel"
                                 style="@style/CharacterDetailHeaderSectionTitle"
-                                android:text="Status"
+                                android:text="@string/status"
                                 app:layout_constraintEnd_toStartOf="@id/characterSpeciesLabel"
                                 app:layout_constraintHorizontal_chainStyle="spread"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +105,7 @@
                             <TextView
                                 android:id="@+id/characterSpeciesLabel"
                                 style="@style/CharacterDetailHeaderSectionTitle"
-                                android:text="Species"
+                                android:text="@string/species"
                                 app:layout_constraintEnd_toStartOf="@id/characterGenderLabel"
                                 app:layout_constraintStart_toEndOf="@id/characterStatusLabel"
                                 app:layout_constraintTop_toBottomOf="@id/characterName" />
@@ -113,7 +113,7 @@
                             <TextView
                                 android:id="@+id/characterGenderLabel"
                                 style="@style/CharacterDetailHeaderSectionTitle"
-                                android:text="Gender"
+                                android:text="@string/gender"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/characterSpeciesLabel"
                                 app:layout_constraintTop_toBottomOf="@id/characterName" />
@@ -144,81 +144,53 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+                                >
+                                <TextView
+                                    style="@style/CharacterDetailSectionTitle"
+                                    android:text="@string/origin" />
+
+                                <TextView
+                                    style="@style/CharacterDetailLocationSectionBody"
+                                    android:text="@{characterDataOriginName}"
+                                    tools:text="@string/origin" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+
+                                >
+                                <TextView
+                                    style="@style/CharacterDetailSectionTitle"
+                                    android:text="@string/location" />
+
+                                <TextView
+                                    style="@style/CharacterDetailLocationSectionBody"
+                                    android:text="@{characterDataLocationName}"
+                                    tools:text="@string/location" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-                <!-- Location & Origin Sections -->
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.cardview.widget.CardView
-                        style="@style/CharacterDetailLocationSectionCard"
-                        android:id="@+id/parentOrigin"
-                        android:layout_height="100dp"
-                        android:layout_width="0dp"
-                        android:layout_marginStart="8dp"
-                        app:layout_constraintEnd_toStartOf="@+id/parentLocation"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        card_view:cardCornerRadius="10dp"
-                        card_view:cardElevation="5dp"
-                        card_view:cardUseCompatPadding="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                style="@style/CharacterDetailSectionTitle"
-                                android:text="Section_origin" />
-
-                            <TextView
-                                style="@style/CharacterDetailLocationSectionBody"
-                                android:text="@{characterDataOriginName}"
-                                tools:text="Earth" />
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        style="@style/CharacterDetailLocationSectionCard"
-                        android:id="@+id/parentLocation"
-                        android:layout_height="100dp"
-                        android:layout_width="0dp"
-                        android:layout_marginEnd="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/parentOrigin"
-                        app:layout_constraintTop_toTopOf="parent"
-                        card_view:cardCornerRadius="10dp"
-                        card_view:cardElevation="5dp"
-                        card_view:cardUseCompatPadding="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                style="@style/CharacterDetailSectionTitle"
-                                android:text="Section_location" />
-
-                            <TextView
-                                style="@style/CharacterDetailLocationSectionBody"
-                                android:text="@{characterDataLocationName}"
-                                tools:text="Earth" />
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!-- Episode List Section -->
 
@@ -239,7 +211,7 @@
 
                         <TextView
                             style="@style/CharacterDetailSectionTitle"
-                            android:text="Section_list_of_episodes" />
+                            android:text="@string/list_of_episodes" />
 
                         <ProgressBar
                             android:id="@+id/episodeProgressBar"

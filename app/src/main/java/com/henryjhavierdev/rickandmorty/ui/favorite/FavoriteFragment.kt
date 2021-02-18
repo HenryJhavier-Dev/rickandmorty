@@ -10,13 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.henryjhavierdev.data.CharacterRepository
-import com.henryjhavierdev.data.datasource.CharacterRemoteDataSource
-import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
-import com.henryjhavierdev.databasemanager.CharacterDataBase
-import com.henryjhavierdev.databasemanager.CharacterLocalDataSourceImpl
-import com.henryjhavierdev.requestmanager.CharacterRemoteDataSourceImpl
-import com.henryjhavierdev.requestmanager.CharacterRequest
 import com.henryjhavierdev.rickandmorty.MainApplication
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.FavoriteListAdapter
@@ -26,11 +19,9 @@ import com.henryjhavierdev.rickandmorty.di.FavoriteListComponent
 import com.henryjhavierdev.rickandmorty.di.FavoriteListModule
 import com.henryjhavierdev.rickandmorty.parcelables.CharacterResultParcelable
 import com.henryjhavierdev.rickandmorty.presentation.Event
-import com.henryjhavierdev.rickandmorty.utils.URL_BASE
 import com.henryjhavierdev.rickandmorty.utils.getViewModel
 import com.henryjhavierdev.rickandmorty.utils.setItemDecorationSpacing
 import com.henryjhavierdev.rickandmorty.viewmodel.FavoriteViewModel
-import com.henryjhavierdev.usecases.GetAllFavoriteCharactersUseCase
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
 
@@ -72,7 +63,7 @@ class FavoriteFragment : Fragment(), FavoriteListener {
         favoriteListAdapter.setHasStableIds(true)
 
         rvFavoriteList.run {
-            setItemDecorationSpacing(resources.getDimension(R.dimen.cardv_view_margin))
+            setItemDecorationSpacing(resources.getDimension(R.dimen.card_view_margin))
             adapter = favoriteListAdapter
         }
 

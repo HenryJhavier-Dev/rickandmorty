@@ -42,7 +42,7 @@ class HomeFragment : Fragment(), CharacterListener {
         super.onCreate(savedInstanceState)
 
         val context = context?.applicationContext as MainApplication
-        
+
         characterListComponent = context.component.inject(CharacterListModule())
 
     }
@@ -66,7 +66,7 @@ class HomeFragment : Fragment(), CharacterListener {
 
         rv_home_character.run{
             addOnScrollListener(onScrollListener)
-            setItemDecorationSpacing(resources.getDimension(R.dimen.cardv_view_margin))
+            setItemDecorationSpacing(resources.getDimension(R.dimen.card_view_margin))
 
             adapter = characterGridAdapter
 

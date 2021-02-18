@@ -9,76 +9,56 @@
             type="com.henryjhavierdev.domain.Character" />
     </data>
 
-    <androidx.cardview.widget.CardView
-        android:layout_margin="@dimen/cardv_view_margin"
-        app:cardCornerRadius="@dimen/cardview_default_elevation"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:background="@drawable/cardview_degraded"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:orientation="vertical"
-            android:gravity="center"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_home_avatar"
+            android:padding="@dimen/card_view_margin"
+            app:imageCircleFromUrl="@{character.image}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/character_image"
+            tools:srcCompat="@tools:sample/avatars" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_home_avatar"
-                app:imageFromUrl="@{character.image}"
-                android:layout_width="@dimen/character_image"
-                android:layout_height="@dimen/character_image"
-                tools:srcCompat="@tools:sample/avatars" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_home_name"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:maxLines="2"
+                android:text="@{@string/name_format(character.name)}"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:layout_marginTop="@dimen/card_view_margin"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:hint="@string/name" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_home_name"
-                    android:textAlignment="center"
-                    android:text="@{character.name}"
-                    android:layout_marginTop="@dimen/cardv_view_margin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/name" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_home_species"
+                android:text="@{@string/species_format(character.species)}"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/card_view_margin"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/species" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_home_status"
-                    android:text="@{character.status}"
-                    android:textAlignment="center"
-                    android:layout_marginTop="@dimen/cardv_view_margin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/status" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_home_species"
-                    android:text="@{character.species}"
-                    android:textAlignment="center"
-                    android:layout_marginTop="@dimen/cardv_view_margin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/species" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_home_gender"
-                    android:text="@{character.gender}"
-                    android:textAlignment="center"
-                    android:layout_marginTop="@dimen/cardv_view_margin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/gender" />
-
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </androidx.cardview.widget.CardView>
 </layout>
