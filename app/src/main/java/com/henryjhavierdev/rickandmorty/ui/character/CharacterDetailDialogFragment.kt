@@ -9,30 +9,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
-import com.henryjhavierdev.data.CharacterRepository
-import com.henryjhavierdev.data.EpisodeRepository
-import com.henryjhavierdev.data.datasource.CharacterRemoteDataSource
-import com.henryjhavierdev.data.datasource.LocalCharacterDataSource
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.imagemanager.bindCircularImageUrl
+import com.henryjhavierdev.rickandmorty.MainApplication
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.EpisodeListAdapter
-import com.henryjhavierdev.databasemanager.CharacterDataBase
-import com.henryjhavierdev.databasemanager.CharacterLocalDataSourceImpl
-import com.henryjhavierdev.requestmanager.CharacterRemoteDataSourceImpl
-import com.henryjhavierdev.requestmanager.CharacterRequest
-import com.henryjhavierdev.requestmanager.EpisodeRemoteDataSourceImpl
-import com.henryjhavierdev.requestmanager.EpisodeRequest
-import com.henryjhavierdev.rickandmorty.MainApplication
 import com.henryjhavierdev.rickandmorty.databinding.FragmentCharacterDetailBinding
 import com.henryjhavierdev.rickandmorty.di.CharacterDetailComponent
 import com.henryjhavierdev.rickandmorty.di.CharacterDetailModule
 import com.henryjhavierdev.rickandmorty.parcelables.toCharacterDomain
 import com.henryjhavierdev.rickandmorty.presentation.Event
-import com.henryjhavierdev.usecases.GetEpisodeFromCharacterUseCase
-import com.henryjhavierdev.usecases.GetFavoriteCharacterStatusUseCase
-import com.henryjhavierdev.usecases.UpdateFavoriteCharacterStatusUseCase
-import com.henryjhavierdev.rickandmorty.utils.URL_BASE
 import com.henryjhavierdev.rickandmorty.utils.getViewModel
 import com.henryjhavierdev.rickandmorty.utils.showLongToast
 import com.henryjhavierdev.rickandmorty.viewmodel.CharacterDetailDialogFragmentViewModel
@@ -123,7 +109,7 @@ class CharacterDetailDialogFragment : DialogFragment() {
             if (isFavorite != null && isFavorite) {
                 R.drawable.ic_favorite
             } else {
-                R.drawable.ic_favorite_border
+                R.drawable.ic_not_favorite
             }
         )
     }

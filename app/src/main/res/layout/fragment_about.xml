@@ -4,94 +4,179 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="aboutCopyright"
+            type="String" />
+
         <variable
             name="viewModelAbout"
             type="com.henryjhavierdev.rickandmorty.viewmodel.AboutViewModel" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/pageBaseColor"
         tools:context=".ui.home.HomeFragment">
 
+
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardCornerRadius="36dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="60dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="60dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/TitleText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/henry_rojas" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lorem_ipsum"
-                    android:textAlignment="center" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_margin="8dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_height="1dp" />
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="36dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:orientation="horizontal"
-                    android:backgroundTint="@color/primary_green"
                     android:layout_width="match_parent"
-                    android:weightSum="2"
-                    android:layout_height="80dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_git_hub"
-                        android:background="@android:color/transparent"
-                        android:tint="#FF5722">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/TitleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/henry_rojas" />
 
-                    </androidx.appcompat.widget.AppCompatImageButton>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_constraint_botton"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        app:layout_constraintBottom_toBottomOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:backgroundTint="#313131"
-                        android:src="@drawable/ic_linkedin"
-                        android:tint="@color/light_blue_900">
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/height_button"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:onClick="@{() -> viewModelAbout.onClickedGoGitHub()}"
+                            android:src="@drawable/ic_git_hub"
+                            android:tint="#FF5722">
 
-                    </androidx.appcompat.widget.AppCompatImageButton>
+                        </androidx.appcompat.widget.AppCompatImageButton>
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/height_button"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:backgroundTint="#313131"
+                            android:onClick="@{() -> viewModelAbout.onClickedGoLinkedIn()}"
+                            android:src="@drawable/ic_linkedin"
+                            android:tint="@color/light_blue_900">
+
+                        </androidx.appcompat.widget.AppCompatImageButton>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_about_description"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:hint="@string/lorem_ipsum"
+                                android:textAlignment="textStart"
+                                android:layout_gravity="start" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_margin="8dp"
+                                android:background="@color/black" />
+
+
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/TitleText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/copyright"
+                                android:textAlignment="viewStart" />
+
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/lorem_ipsum"
+                                android:textSize="14sp"
+                                android:background="@android:color/transparent"
+                                android:textColor="@color/black"
+                                android:text="@{aboutCopyright}"
+                                android:textAlignment="textStart"
+                                android:layout_gravity="start"/>
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/light_blue_600"
+                                android:onClick="@{() -> viewModelAbout.onClickedGoApi()}"
+                                android:text="@string/go_to_api_documentation"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </androidx.appcompat.widget.AppCompatTextView>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/TitleText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/architecture_libraries"
+                                android:textAlignment="viewStart" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_about_architecture"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:nestedScrollingEnabled="false"
+                                android:layout_marginBottom="8dp"
+                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                app:setAdapter="@{viewModelAbout.getRecyclerAdapterTwo()}"
+                                app:spanCount="2"
+                                tools:listitem="@layout/view_grid_architecture_item" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.core.widget.NestedScrollView>
+
+
+
+
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_marginTop="16dp"
-            android:elevation="10dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:elevation="10dp"
             app:imageCircleFromUrl="@{viewModelAbout.profileImage}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

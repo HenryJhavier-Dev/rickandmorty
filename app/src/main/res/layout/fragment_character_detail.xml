@@ -241,7 +241,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:backgroundTint="@color/primary_green"
+            app:backgroundTint="@color/colorPrimaryDark"
             app:tint="@android:color/white"
             app:layout_anchor="@id/parent"
             app:layout_anchorGravity="bottom|end"/>

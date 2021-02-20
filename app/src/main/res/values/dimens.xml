@@ -4,4 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="card_view_margin">8dp</dimen>
     <dimen name="character_image">150dp</dimen>
+    <dimen name="height_logo">100dp</dimen>
+    <dimen name="height_button">50dp</dimen>
+    <dimen name="margin_constraint_botton">60dp</dimen>
 </resources>
