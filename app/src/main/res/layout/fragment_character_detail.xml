@@ -34,11 +34,24 @@
             name="characterDataLocationName"
             type="String" />
 
+        <variable
+            name="viewModelCharacterDetail"
+            type="com.henryjhavierdev.rickandmorty.viewmodel.CharacterDetailDialogFragmentViewModel" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_close_detail_character"
+            android:layout_width="27dp"
+            android:layout_height="24dp"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModelCharacterDetail.onClickedClose()}"
+            android:background="@android:drawable/ic_menu_close_clear_cancel"
+            android:backgroundTint="@color/primary_green"/>
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/parent"
@@ -53,143 +66,133 @@
 
                 <!-- Character Detail Section -->
 
-                <androidx.cardview.widget.CardView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    card_view:cardCornerRadius="10dp"
-                    card_view:cardElevation="5dp"
-                    card_view:cardUseCompatPadding="true">
+                    android:background="@drawable/card_degraded_item"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/characterImage"
+                            android:layout_width="128dp"
+                            android:layout_height="128dp"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/characterName"
+                            style="@style/CharacterDetailSectionName"
+                            android:gravity="center"
+                            android:text="@{characterDataName}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/characterImage"
+                            tools:text="Rick Sanchez" />
+
+                        <TextView
+                            android:id="@+id/characterStatusLabel"
+                            style="@style/CharacterDetailHeaderSectionTitle"
+                            android:text="@string/status"
+                            app:layout_constraintEnd_toStartOf="@id/characterSpeciesLabel"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/characterName" />
+
+                        <TextView
+                            android:id="@+id/characterSpeciesLabel"
+                            style="@style/CharacterDetailHeaderSectionTitle"
+                            android:text="@string/species"
+                            app:layout_constraintEnd_toStartOf="@id/characterGenderLabel"
+                            app:layout_constraintStart_toEndOf="@id/characterStatusLabel"
+                            app:layout_constraintTop_toBottomOf="@id/characterName" />
+
+                        <TextView
+                            android:id="@+id/characterGenderLabel"
+                            style="@style/CharacterDetailHeaderSectionTitle"
+                            android:text="@string/gender"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/characterSpeciesLabel"
+                            app:layout_constraintTop_toBottomOf="@id/characterName" />
+
+                        <TextView
+                            style="@style/CharacterDetailHeaderSectionBody"
+                            android:text="@{characterDataStatus}"
+                            app:layout_constraintEnd_toEndOf="@id/characterStatusLabel"
+                            app:layout_constraintStart_toStartOf="@id/characterStatusLabel"
+                            app:layout_constraintTop_toBottomOf="@id/characterStatusLabel"
+                            tools:text="Alive" />
+
+                        <TextView
+                            style="@style/CharacterDetailHeaderSectionBody"
+                            android:text="@{characterDataSpecies}"
+                            app:layout_constraintEnd_toEndOf="@id/characterSpeciesLabel"
+                            app:layout_constraintStart_toStartOf="@id/characterSpeciesLabel"
+                            app:layout_constraintTop_toBottomOf="@id/characterSpeciesLabel"
+                            tools:text="Human" />
+
+                        <TextView
+                            style="@style/CharacterDetailHeaderSectionBody"
+                            android:text="@{characterDataGender}"
+                            app:layout_constraintEnd_toEndOf="@id/characterGenderLabel"
+                            app:layout_constraintStart_toStartOf="@id/characterGenderLabel"
+                            app:layout_constraintTop_toBottomOf="@id/characterGenderLabel"
+                            tools:text="Male" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:gravity="center"
                         android:orientation="vertical">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <ImageView
-                                android:id="@+id/characterImage"
-                                android:layout_width="128dp"
-                                android:layout_height="128dp"
-                                android:layout_marginTop="8dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:src="@tools:sample/avatars" />
-
-                            <TextView
-                                android:id="@+id/characterName"
-                                style="@style/CharacterDetailSectionName"
-                                android:gravity="center"
-                                android:text="@{characterDataName}"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/characterImage"
-                                tools:text="Rick Sanchez" />
-
-                            <TextView
-                                android:id="@+id/characterStatusLabel"
-                                style="@style/CharacterDetailHeaderSectionTitle"
-                                android:text="@string/status"
-                                app:layout_constraintEnd_toStartOf="@id/characterSpeciesLabel"
-                                app:layout_constraintHorizontal_chainStyle="spread"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/characterName" />
-
-                            <TextView
-                                android:id="@+id/characterSpeciesLabel"
-                                style="@style/CharacterDetailHeaderSectionTitle"
-                                android:text="@string/species"
-                                app:layout_constraintEnd_toStartOf="@id/characterGenderLabel"
-                                app:layout_constraintStart_toEndOf="@id/characterStatusLabel"
-                                app:layout_constraintTop_toBottomOf="@id/characterName" />
-
-                            <TextView
-                                android:id="@+id/characterGenderLabel"
-                                style="@style/CharacterDetailHeaderSectionTitle"
-                                android:text="@string/gender"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/characterSpeciesLabel"
-                                app:layout_constraintTop_toBottomOf="@id/characterName" />
-
-                            <TextView
-                                style="@style/CharacterDetailHeaderSectionBody"
-                                android:text="@{characterDataStatus}"
-                                app:layout_constraintEnd_toEndOf="@id/characterStatusLabel"
-                                app:layout_constraintStart_toStartOf="@id/characterStatusLabel"
-                                app:layout_constraintTop_toBottomOf="@id/characterStatusLabel"
-                                tools:text="Alive" />
-
-                            <TextView
-                                style="@style/CharacterDetailHeaderSectionBody"
-                                android:text="@{characterDataSpecies}"
-                                app:layout_constraintEnd_toEndOf="@id/characterSpeciesLabel"
-                                app:layout_constraintStart_toStartOf="@id/characterSpeciesLabel"
-                                app:layout_constraintTop_toBottomOf="@id/characterSpeciesLabel"
-                                tools:text="Human" />
-
-                            <TextView
-                                style="@style/CharacterDetailHeaderSectionBody"
-                                android:text="@{characterDataGender}"
-                                app:layout_constraintEnd_toEndOf="@id/characterGenderLabel"
-                                app:layout_constraintStart_toStartOf="@id/characterGenderLabel"
-                                app:layout_constraintTop_toBottomOf="@id/characterGenderLabel"
-                                tools:text="Male" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
                         <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:orientation="horizontal">
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            >
+                            <TextView
+                                style="@style/CharacterDetailSectionTitle"
+                                android:text="@string/origin" />
 
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_weight="1"
-                                >
-                                <TextView
-                                    style="@style/CharacterDetailSectionTitle"
-                                    android:text="@string/origin" />
-
-                                <TextView
-                                    style="@style/CharacterDetailLocationSectionBody"
-                                    android:text="@{characterDataOriginName}"
-                                    tools:text="@string/origin" />
-
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_weight="1"
-
-                                >
-                                <TextView
-                                    style="@style/CharacterDetailSectionTitle"
-                                    android:text="@string/location" />
-
-                                <TextView
-                                    style="@style/CharacterDetailLocationSectionBody"
-                                    android:text="@{characterDataLocationName}"
-                                    tools:text="@string/location" />
-                            </androidx.appcompat.widget.LinearLayoutCompat>
+                            <TextView
+                                style="@style/CharacterDetailLocationSectionBody"
+                                android:text="@{characterDataOriginName}"
+                                tools:text="@string/origin" />
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
 
-                    </LinearLayout>
+                            >
+                            <TextView
+                                style="@style/CharacterDetailSectionTitle"
+                                android:text="@string/location" />
 
-                </androidx.cardview.widget.CardView>
+                            <TextView
+                                style="@style/CharacterDetailLocationSectionBody"
+                                android:text="@{characterDataLocationName}"
+                                tools:text="@string/location" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </LinearLayout>
+
 
 
                 <!-- Episode List Section -->
@@ -238,13 +241,18 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/characterFavorite"
+            android:onClick="@{() -> viewModelCharacterDetail.onUpdateFavoriteCharacterStatus()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:backgroundTint="@color/colorPrimaryDark"
             app:tint="@android:color/white"
             app:layout_anchor="@id/parent"
-            app:layout_anchorGravity="bottom|end"/>
+            app:layout_anchorGravity="bottom|end"
+            android:contentDescription="@string/floating_add_remove_favorite_character" />
+
+
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

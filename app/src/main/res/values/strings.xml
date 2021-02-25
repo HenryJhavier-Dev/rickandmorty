@@ -24,7 +24,7 @@
     <string name="gender_format">Gender: %s</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="henry_rojas">Develop: Henry Rojas</string>
+    <string name="henry_rojas">App developed by: Henry Rojas</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lorem quam, laoreet scelerisque egestas ornare Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lorem quam, laoreet scelerisque egestas ornare</string>
     <string name="dont_have_a_favorite">You don\'t have a favorite yet</string>
     <string name="origin">Origin</string>
@@ -33,4 +33,7 @@
     <string name="architecture_libraries">Architecture/Libraries</string>
     <string name="copyright">Copyright</string>
     <string name="go_to_api_documentation">Go to Api Documentation</string>
+    <string name="floating_add_remove_favorite_character">Floating add/remove favorite character</string>
+
+    <string name="em_get_character">Error when accessing the character</string>
 </resources>

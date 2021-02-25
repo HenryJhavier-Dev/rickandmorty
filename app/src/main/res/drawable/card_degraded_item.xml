@@ -1,13 +1,13 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <gradient
-        android:startColor="@color/primary_green"
-        android:endColor="@color/black_overlay"
+        android:startColor="@color/colorPrimaryDark"
+        android:endColor="@color/primary_green"
         android:angle="270" />
 
     <corners
         android:bottomRightRadius="20dp"
-        android:bottomLeftRadius="5dp"
-        android:topLeftRadius="20dp"
+        android:bottomLeftRadius="500dp"
+        android:topLeftRadius="0dp"
         android:topRightRadius="5dp"
 
         />

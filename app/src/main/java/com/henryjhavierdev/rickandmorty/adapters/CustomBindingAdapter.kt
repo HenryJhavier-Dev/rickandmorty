@@ -11,7 +11,7 @@ import com.henryjhavierdev.rickandmorty.R
 fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
         view.bindImageUrl(
             url = imageUrl,
-            placeholder = R.drawable.ic_camera_alt_black,
+            placeholder = R.drawable.ic_downloading_24,
             errorPlaceholder = R.drawable.ic_broken_image_black
         )
 }
@@ -20,7 +20,7 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
 fun bindImageCircleFromUrl(view: ImageView, imageUrl: String?) {
     view.bindCircularImageUrl(
         url = imageUrl,
-        placeholder = R.drawable.ic_camera_alt_black,
+        placeholder = R.drawable.ic_downloading_24,
         errorPlaceholder = R.drawable.ic_broken_image_black
     )
 }

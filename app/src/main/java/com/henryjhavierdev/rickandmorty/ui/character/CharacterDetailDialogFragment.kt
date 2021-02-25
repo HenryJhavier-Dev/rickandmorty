@@ -59,6 +59,7 @@ class CharacterDetailDialogFragment : DialogFragment() {
     ): View {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_character_detail,container, false)
+        binding.viewModelCharacterDetail = characterDetailViewModel
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -67,17 +68,15 @@ class CharacterDetailDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Listener
-        episodeListAdapter = EpisodeListAdapter { episode ->
+        //Clicked rv  and show episode info
+        /*episodeListAdapter = EpisodeListAdapter { episode ->
             activity?.showLongToast("Episode -> $episode")
-        }
+        }*/
 
         rvEpisodeList.adapter = episodeListAdapter
 
-        characterFavorite.setOnClickListener {
-            characterDetailViewModel.onUpdateFavoriteCharacterStatus()
-        }
-
         characterDetailViewModel.characterValues.observe(this, Observer(this::loadCharacter))
+
         //characterDetailViewModel.isFavorite.observe(this, Observer(this::updateFavoriteIcon))
         characterDetailViewModel.isFavorite.observe(this, Observer {
             updateFavoriteIcon(it)
@@ -93,7 +92,7 @@ class CharacterDetailDialogFragment : DialogFragment() {
     private fun loadCharacter(character: Character){
         binding.characterImage.bindCircularImageUrl(
             url = character.image,
-            placeholder = R.drawable.ic_camera_alt_black,
+            placeholder = R.drawable.ic_downloading_24,
             errorPlaceholder = R.drawable.ic_broken_image_black
         )
         binding.characterDataName = character.name
@@ -123,8 +122,11 @@ class CharacterDetailDialogFragment : DialogFragment() {
                 is CharacterDetailDialogFragmentViewModel.CharacterDetailNavigation.ShowEpisodeList -> navigation.run {
                     episodeListAdapter.updateData(episodeList)
                 }
+                CharacterDetailDialogFragmentViewModel.CharacterDetailNavigation.CloseApp -> {
+                    activity?.onBackPressed()
+                }
                 CharacterDetailDialogFragmentViewModel.CharacterDetailNavigation.CloseActivity -> {
-                    activity?.showLongToast("No hay data relacionada con este character")
+                    activity?.showLongToast(getString(R.string.em_get_character))
                     activity?.finish()
                 }
                 CharacterDetailDialogFragmentViewModel.CharacterDetailNavigation.HideEpisodeListLoading -> {

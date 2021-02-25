@@ -11,7 +11,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:orientation="vertical"
-        android:background="@drawable/cardview_degraded"
+        android:background="@drawable/card_view_degraded"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -26,7 +26,7 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -37,13 +37,13 @@
                 android:text="@{@string/name_format(character.name)}"
                 android:textSize="18sp"
                 android:textAlignment="center"
-                android:layout_marginTop="@dimen/card_view_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_home_species"
+                android:visibility="gone"
                 android:text="@{@string/species_format(character.species)}"
                 android:textAlignment="center"
                 android:textColor="@color/black"

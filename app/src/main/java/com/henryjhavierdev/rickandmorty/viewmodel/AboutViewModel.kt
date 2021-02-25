@@ -15,10 +15,10 @@ class AboutViewModel : ViewModel() {
     }
     val aboutDescription: LiveData<String> = _aboutDescription
 
-    var aboutCopyright = "  Rick and Morty is an American adult animated science fiction sitcom" +
+    var aboutCopyright = "Rick and Morty is an American adult animated science fiction sitcom" +
     " created by Justin Roiland and Dan Harmon for Cartoon Network's nighttime Adult " +
     "Swim programming block. \n \n" +
-    "   The Rick and Morty API is a RESTful development by Axel Fuhrmann "
+    "The Rick and Morty API is a RESTful development by Axel Fuhrmann "
 
     private val _events = MutableLiveData<Event<AboutNavigation>>()
     val events: LiveData<Event<AboutNavigation>> get() = _events
@@ -26,9 +26,9 @@ class AboutViewModel : ViewModel() {
     private lateinit var architectureLibraryAdapter: ArchitectureLibraryAdapter
 
     init {
-        _aboutDescription.value = "  A app based on the television show Rick and Morty, where you " +
+        _aboutDescription.value = "A app based on the television show Rick and Morty, where you " +
                 "can access information on their characters and in which episodes they have participated." +
-                " \n\n  Illustrating Android development best practices with Android Jetpack."
+                " \n\nIllustrating Android development best practices with Android Jetpack."
 
     }
     fun onClickedGoGitHub(){

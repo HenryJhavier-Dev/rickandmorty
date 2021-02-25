@@ -1,5 +1,6 @@
 package com.henryjhavierdev.rickandmorty.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,16 +33,14 @@ class CharacterDetailDialogFragmentViewModel(
 
     //endregion
 
-    //region Override Methods & Callbacks
-
     override fun onCleared() {
         super.onCleared()
         disposable.clear()
     }
 
-    //endregion
-
-    //region Public Methods
+    fun onClickedClose(){
+        _events.value = Event(CharacterDetailNavigation.CloseApp)
+    }
 
     fun onCharacterValidation() {
 
@@ -53,12 +52,13 @@ class CharacterDetailDialogFragmentViewModel(
         _characterValues.value = character
 
         validateFavoriteCharacterStatus(character.id)
-        character.episodeList?.let { requestShowEpisodeList(it) }
+
+        character.episodeList?.let {
+            requestShowEpisodeList(it)
+        }
     }
 
     fun onUpdateFavoriteCharacterStatus() {
-
-        println(" No pudo guardarlo $character")
 
         disposable.add(
            updateFavoriteCharacterStatusUseCase.invoke(character!!)
@@ -68,10 +68,6 @@ class CharacterDetailDialogFragmentViewModel(
 
         )
     }
-
-    //endregion
-
-    //region Private Methods
 
     private fun validateFavoriteCharacterStatus(characterId: Int){
         disposable.add(
@@ -107,13 +103,12 @@ class CharacterDetailDialogFragmentViewModel(
         )
     }
 
-    //endregion
-
     //region Inner Classes & Interfaces
 
     sealed class CharacterDetailNavigation {
         data class ShowEpisodeError(val error: Throwable) : CharacterDetailNavigation()
         data class ShowEpisodeList(val episodeList: List<Episode>) : CharacterDetailNavigation()
+        object CloseApp : CharacterDetailNavigation()
         object CloseActivity : CharacterDetailNavigation()
         object HideEpisodeListLoading : CharacterDetailNavigation()
         object ShowEpisodeListLoading : CharacterDetailNavigation()
