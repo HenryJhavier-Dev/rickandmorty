@@ -69,9 +69,10 @@ class CharacterDetailDialogFragment : DialogFragment() {
 
         //Listener
         //Clicked rv  and show episode info
-        /*episodeListAdapter = EpisodeListAdapter { episode ->
-            activity?.showLongToast("Episode -> $episode")
-        }*/
+        episodeListAdapter = EpisodeListAdapter { episode ->
+            //todo añadir funcionalidad para detalles de espisodios
+           // activity?.showLongToast("Episode -> $episode")
+        }
 
         rvEpisodeList.adapter = episodeListAdapter
 
