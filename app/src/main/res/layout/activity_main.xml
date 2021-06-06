@@ -32,9 +32,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                app:itemIconTint="@color/colorPrimary"
-                app:itemTextColor="@color/colorPrimary"
-                app:itemBackground="@color/black"
+                app:itemIconTint="@drawable/navigation_view_colored"
+                app:itemTextColor="@color/txt_unselected"
+                app:itemBackground="@color/bc_app_bar"
                 app:menu="@menu/bottom_nav_menu" />
 
         </RelativeLayout>

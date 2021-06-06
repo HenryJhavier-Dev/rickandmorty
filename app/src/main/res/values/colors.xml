@@ -16,5 +16,7 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
-    <color name="pageBaseColor">#E5E5E5</color>
+    <color name="bc_page">#1D2025</color>
+    <color name="bc_app_bar">#383D44</color>
+    <color name="txt_unselected">#848586</color>
 </resources>

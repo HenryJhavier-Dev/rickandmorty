@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.henryjhavierdev.domain.Character
 import com.henryjhavierdev.imagemanager.bindCircularImageUrl
+import com.henryjhavierdev.imagemanager.bindImageUrl
 import com.henryjhavierdev.rickandmorty.MainApplication
 import com.henryjhavierdev.rickandmorty.R
 import com.henryjhavierdev.rickandmorty.adapters.EpisodeListAdapter
@@ -91,7 +92,8 @@ class CharacterDetailDialogFragment : DialogFragment() {
     //region Private Methods
 
     private fun loadCharacter(character: Character){
-        binding.characterImage.bindCircularImageUrl(
+
+        binding.characterImage.bindImageUrl(
             url = character.image,
             placeholder = R.drawable.ic_downloading_24,
             errorPlaceholder = R.drawable.ic_broken_image_black

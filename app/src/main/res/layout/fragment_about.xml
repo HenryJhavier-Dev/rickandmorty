@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/pageBaseColor"
+        android:background="@color/bc_page"
         tools:context=".ui.home.HomeFragment">
 
 
@@ -112,6 +112,7 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 style="@style/TitleText"
+                                android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/architecture_libraries"
@@ -119,6 +120,7 @@
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_about_architecture"
+                                android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:nestedScrollingEnabled="false"

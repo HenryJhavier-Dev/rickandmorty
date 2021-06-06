@@ -57,7 +57,7 @@
             android:id="@+id/parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/pageBaseColor">
+            android:background="@color/bc_page">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,20 +68,21 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@drawable/card_degraded_item"
                     android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
-                        <ImageView
+                        <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/characterImage"
-                            android:layout_width="128dp"
-                            android:layout_height="128dp"
-                            android:layout_marginTop="8dp"
+                            android:layout_width="300dp"
+                            android:layout_height="300dp"
+                            android:scaleType="fitXY"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             tools:src="@tools:sample/avatars" />
@@ -160,14 +161,7 @@
                             android:orientation="vertical"
                             android:layout_weight="1"
                             >
-                            <TextView
-                                style="@style/CharacterDetailSectionTitle"
-                                android:text="@string/origin" />
 
-                            <TextView
-                                style="@style/CharacterDetailLocationSectionBody"
-                                android:text="@{characterDataOriginName}"
-                                tools:text="@string/origin" />
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -178,6 +172,14 @@
                             android:layout_weight="1"
 
                             >
+                            <TextView
+                                style="@style/CharacterDetailSectionTitle"
+                                android:text="@string/origin" />
+
+                            <TextView
+                                style="@style/CharacterDetailLocationSectionBody"
+                                android:text="@{characterDataOriginName}"
+                                tools:text="@string/origin" />
                             <TextView
                                 style="@style/CharacterDetailSectionTitle"
                                 android:text="@string/location" />
